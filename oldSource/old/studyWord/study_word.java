@@ -1,4 +1,4 @@
-package com.example.my_project;
+package com.example.englishvocabulary.old.studyWord;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

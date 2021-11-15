@@ -1,4 +1,5 @@
-package com.example.firebasetest;
+package com.example.englishvocabulary.old.firestore;
+
 
 public class Word {
     private String word;

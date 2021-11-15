@@ -1,4 +1,4 @@
-package com.example.my_project;
+package com.example.englishvocabulary.old.studyWord;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.englishvocabulary.R;
 
 public class drawer extends AppCompatActivity implements View.OnClickListener {
 
