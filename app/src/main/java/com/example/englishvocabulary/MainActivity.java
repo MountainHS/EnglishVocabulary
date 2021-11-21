@@ -1,5 +1,7 @@
 package com.example.englishvocabulary;
 
+import static com.example.englishvocabulary.firestore.DatabaseControl.update;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -8,61 +10,37 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import org.w3c.dom.Text;
 
-    Button myword;
-    Button amgi;
-    Button miamgi;
-    Button odab;
-    Button test;
-    Button game;
-    Button drawerhandle;
-    Button close_drawer;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    ArrayList<Word> array;
+    TextView updateTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        myword = (Button) findViewById(R.id.button_myword);
-        amgi = (Button) findViewById(R.id.button_amgi);
-        miamgi = (Button) findViewById(R.id.button_miamgi);
-        odab = (Button) findViewById(R.id.button_odap);
-        test = (Button) findViewById(R.id.button_test);
-        game = (Button) findViewById(R.id.button_game);
-        drawerhandle = (Button) findViewById(R.id.button_closeDrawerWithMain);
-        close_drawer = (Button)findViewById(R.id.button_close_drawer);
-
-        myword.setOnClickListener(this);
-        amgi.setOnClickListener(this);
-        miamgi.setOnClickListener(this);
-        odab.setOnClickListener(this);
-        test.setOnClickListener(this);
-        game.setOnClickListener(this);
-        drawerhandle.setOnClickListener(this);
-
+        array = new ArrayList<>();
+        updateTest = findViewById(R.id.textview_getTest);
+        updateTest.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-        if(view==drawerhandle){
-            DrawerLayout drawer = findViewById(R.id.activity_main);
-            if(!drawer.isDrawerOpen(Gravity.LEFT)){
-                drawer.openDrawer(Gravity.LEFT);
-            }
+    public void onClick(View v) {
+        TextView textView = (TextView) v;
+        update(array);
+        for (Word w : array){
+            textView.setText(w.getKorean1());
+//            try {
+//                Thread.sleep(1000);
+//            }
+//            catch (Exception e){
+//                System.out.println(e);
+//            }
         }
-        else if(view==myword){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            startActivity(intent);
-        }
-
-        else if(view==amgi){
-            /*
-            Intent intent = new Intent(getApplicationContext(), study_word.class);
-            intent.putExtra("when", 1);
-            startActivity(intent);*/
-        }
-
     }
 }

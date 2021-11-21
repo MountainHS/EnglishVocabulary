@@ -7,12 +7,16 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.englishvocabulary.Word;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
@@ -20,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatabaseControl extends AppCompatActivity {
+public class DatabaseControl extends AppCompatActivity{
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();;
     public static CollectionReference engVoca = db.collection("EngVoca");
 
@@ -34,7 +38,7 @@ public class DatabaseControl extends AppCompatActivity {
         newWord.put("memorize need", isMem);
         newWord.put("recent test result", isOdap);
 
-        engVoca.document("test")
+        engVoca.document()
                 .set(newWord)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -50,22 +54,19 @@ public class DatabaseControl extends AppCompatActivity {
             });
     }
 
-//    public static ArrayList<Word> update(){
-//        CollectionReference colRef = db.collection("word");
-//        ArrayList<Word> word_list = new ArrayList<>();
-//
-////        word_list.clear();
-//        colRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                for(DocumentSnapshot doc : queryDocumentSnapshots){
-//                    Log.d("word_list", doc.toObject(Word.class).getWord() + " " + doc.toObject(Word.class).getMean());
-//                    word_list.add(doc.toObject(Word.class));
-//                }
-//                notifyDataSetChanged();
-//            }
-//        });
-//    }
+    public static void update(ArrayList<Word> wordList){
+        engVoca.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for(QueryDocumentSnapshot doc : task.getResult()){
+                    Log.d("key:", doc.getId() + " value:" + doc.getData() + " type:" + doc.getData().get("korean").getClass().getName());
+                    Word word = doc.toObject(Word.class);
+                    wordList.add(word);
+                    wordList.get(wordList.size()-1).setKorenAll((ArrayList<String>) doc.getData().get("korean"));
+                }
+            }
+        });
+    }
 
 //    public
 }

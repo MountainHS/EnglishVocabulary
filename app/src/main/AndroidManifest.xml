@@ -9,15 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishVocabulary">
-        <activity
-            android:name=".ListWord_show"
-            android:exported="true" />
-        <activity
-            android:name=".ListWord"
-            android:exported="true" />
-        <activity
-            android:name=".Drawer"
-            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
