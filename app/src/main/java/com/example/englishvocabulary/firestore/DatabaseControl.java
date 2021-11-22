@@ -8,12 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.englishvocabulary.Word;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
@@ -21,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatabaseControl extends AppCompatActivity {
+public class DatabaseControl extends AppCompatActivity{
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();;
     public static CollectionReference engVoca = db.collection("EngVoca");
 
@@ -30,12 +34,12 @@ public class DatabaseControl extends AppCompatActivity {
     //// 뜻까지 다 같은 경우 종료
     public static void addWord(Word word){ //파이어베이스에 단어 추가
         Map<String, Object> newWord = new HashMap<>();
-        newWord.put("english", word.getEnglish());
-        newWord.put("korean", word.getKoreanAll());
-        newWord.put("memorize need", word.getisMem());
-        newWord.put("recent test result", word.getisOdap());
+        newWord.put("english", english);
+        newWord.put("korean", korean);
+        newWord.put("isMem", isMem);
+        newWord.put("isOdap", isOdap);
 
-        engVoca.document("test")
+        engVoca.document()
                 .set(newWord)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -51,24 +55,18 @@ public class DatabaseControl extends AppCompatActivity {
             });
     }
 
-
-    /*
-    public static ArrayList<Word> update(){
-        CollectionReference colRef = db.collection("word");
-        ArrayList<Word> word_list = new ArrayList<>();
-
-//        word_list.clear();
-        colRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    public static void update(ArrayList<Word> wordList){
+        engVoca.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(DocumentSnapshot doc : queryDocumentSnapshots){
-                    Log.d("word_list", doc.toObject(Word.class).getEnglish() + " " + doc.toObject(Word.class).getMean());
-                    word_list.add(doc.toObject(Word.class));
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                wordList.clear();
+                for(QueryDocumentSnapshot doc : task.getResult()){
+                    Log.d("key:", doc.getId() + " value:" + doc.getData() + " type:" + doc.getData().get("korean").getClass().getName());
+                    Word word = doc.toObject(Word.class);
+                    wordList.add(word);
+                    wordList.get(wordList.size()-1).setKorenAll((ArrayList<String>) doc.getData().get("korean"));
                 }
-
             }
         });
     }
-*/
-//    public
 }

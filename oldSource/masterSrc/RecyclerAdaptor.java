@@ -1,7 +1,6 @@
 package com.example.englishvocabulary;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,6 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         // RecyclerView의 총 개수 입니다.
         return eng_kor_set.size();
     }
-
 
     void addItem(Word data) {
         // 외부에서 item을 추가시킬 함수입니다.

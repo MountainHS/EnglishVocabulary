@@ -1,7 +1,5 @@
 package com.example.englishvocabulary;
 
-import static com.example.englishvocabulary.firestore.DatabaseControl.update;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -10,16 +8,17 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    ArrayList<Word> array;
-    TextView updateTest;
-    int i = 0;
+    Button myword;
+    Button amgi;
+    Button miamgi;
+    Button odab;
+    Button test;
+    Button game;
+    Button drawerhandle;
+    Button close_drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         odab = (Button) findViewById(R.id.button_odap);
         test = (Button) findViewById(R.id.button_test);
         game = (Button) findViewById(R.id.button_game);
-        drawerhandle = (Button) findViewById(R.id.button_openDrawerWithMain);
+        drawerhandle = (Button) findViewById(R.id.button_closeDrawerWithMain);
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
 
         myword.setOnClickListener(this);
@@ -55,29 +54,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(view==myword){
             Intent intent = new Intent(getApplicationContext(), ListWord.class);
-
-            intent.putExtra("LIST_VERSION", 1);
             startActivity(intent);
         }
 
         else if(view==amgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 2);
-            startActivity(intent);
+            /*
+            Intent intent = new Intent(getApplicationContext(), study_word.class);
+            intent.putExtra("when", 1);
+            startActivity(intent);*/
         }
-        else if(view==miamgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 3);
-            startActivity(intent);
-        }
-        else if(view==odab){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 4);
-            startActivity(intent);
-        }
-        else if(view==test){
-            Intent intent = new Intent(getApplicationContext(), TestSetting.class);
-            startActivity(intent);
-        }
+
     }
 }

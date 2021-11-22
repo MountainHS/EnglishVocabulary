@@ -1,6 +1,5 @@
 package com.example.englishvocabulary;
 
-
 import java.util.ArrayList;
 
 public class Word {
