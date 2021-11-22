@@ -1,10 +1,10 @@
-package com.example.my_project;
+package com.example.englishvocabulary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class list_word_show extends AppCompatActivity {
+public class ListWord_show extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

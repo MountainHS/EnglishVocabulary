@@ -1,4 +1,4 @@
-package com.example.my_project;
+package com.example.englishvocabulary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,7 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
-public class drawer extends AppCompatActivity implements View.OnClickListener {
+public class Drawer extends AppCompatActivity implements View.OnClickListener{
 
     Button close_drawer;
     Button gomain;
@@ -23,11 +23,11 @@ public class drawer extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        close_drawer = (Button)findViewById(R.id.close_drawer_button);
-        gomain = (Button)findViewById(R.id.gomain_button);
-        gowordlist = (Button)findViewById(R.id.golist_button);
-        gogame = (Button)findViewById(R.id.gogame_button);
-        gotest = (Button)findViewById(R.id.gotest_button);
+        close_drawer = (Button)findViewById(R.id.button_close_drawer);
+        gomain = (Button)findViewById(R.id.button_gomain);
+        gowordlist = (Button)findViewById(R.id.button_gowordlist);
+        gogame = (Button)findViewById(R.id.button_gogame);
+        gotest = (Button)findViewById(R.id.button_gotest);
 
         close_drawer.setOnClickListener(this);
         gomain.setOnClickListener(this);
@@ -40,7 +40,7 @@ public class drawer extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view==close_drawer){
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.mainActivity_main);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_main);
             if(drawer.isDrawerOpen(Gravity.LEFT)){
                 drawer.closeDrawer(Gravity.LEFT);
             }

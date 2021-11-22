@@ -1,20 +1,16 @@
-package com.example.my_project;
+package com.example.englishvocabulary.old.studyWord;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import android.content.Intent;
-import android.widget.Toast;
 
 //일단 어뎁터로 연속으로 보여줄 클래스를 정하기 (배열에 IN)
 //그리고 해당 배열에 담긴 정보들을 화면상에 출력 - ItemViewHolder
