@@ -7,6 +7,10 @@
     android:id="@+id/activity_WordList"
     android:background="@color/white"
     tools:context=".ListWord">
+<<<<<<< HEAD
+=======
+
+>>>>>>> word_list_study
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +25,11 @@
             android:orientation="horizontal">
 
             <Button
+<<<<<<< HEAD
                 android:id="@+id/button_closeDrawerWithWordList"
+=======
+                android:id="@+id/button_openDrawerWithWordList"
+>>>>>>> word_list_study
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -86,9 +94,15 @@
             android:layout_marginTop="15dp">
 
             <androidx.recyclerview.widget.RecyclerView
+<<<<<<< HEAD
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/RecyclerView"/>
+=======
+                android:id="@+id/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+>>>>>>> word_list_study
 
         </LinearLayout>
 

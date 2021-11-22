@@ -19,9 +19,17 @@ import android.widget.Toast;
 //일단 어뎁터로 연속으로 보여줄 클래스를 정하기 (배열에 IN)
 //그리고 해당 배열에 담긴 정보들을 화면상에 출력 - ItemViewHolder
 
+<<<<<<< HEAD
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>{
 }//extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
     ArrayList<Word_data> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
+=======
+
+
+public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemViewHolder> {
+    //extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
+    ArrayList<Word> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
+>>>>>>> word_list_study
     Context context; // 어뎁터 안에서 Intent 할 때
 
 
@@ -46,6 +54,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         return eng_kor_set.size();
     }
 
+<<<<<<< HEAD
     void addItem(Word_data data) {
         // 외부에서 item을 추가시킬 함수입니다.
         eng_kor_set.add(data);
@@ -130,4 +139,91 @@ class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         }
     }
 
+=======
+    void addItem(Word data) {
+        // 외부에서 item을 추가시킬 함수입니다.
+        eng_kor_set.add(data);
+
+    }
+
+
+    // RecyclerView의 핵심인 ViewHolder 입니다.
+    // 여기서 subView를 setting 해줍니다.
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView eng;
+        private TextView kor1;
+        private TextView kor2;
+        private TextView kor3;
+        private Word data;
+        private LinearLayout linearLayout;
+
+
+        ItemViewHolder(View itemView) {
+            super(itemView);
+
+            eng = itemView.findViewById(R.id.textview_english_word_list);
+            kor1 = itemView.findViewById(R.id.textview_korean_word_list1);
+            kor2 = itemView.findViewById(R.id.textview_korean_word_list2);
+            kor3 = itemView.findViewById(R.id.textview_korean_word_list3);
+            linearLayout = itemView.findViewById(R.id.layout_word_list_linearlayout);
+        }
+
+        void onBind(Word data) {
+            this.data = data;
+
+
+            eng.setText(data.getEnglish());
+            kor1.setText(data.getKorean1());
+            kor2.setText(data.getKorean2());
+            kor3.setText(data.getKorean3());
+
+            eng.setOnClickListener(this);
+            kor1.setOnClickListener(this);
+            kor2.setOnClickListener(this);
+            kor3.setOnClickListener(this);
+            linearLayout.setOnClickListener(this);
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            String texting = "눌렀어" + data.getWhen();
+            Intent intent = new Intent(context.getApplicationContext(), StudyWord.class);
+            switch (view.getId()) {
+
+                case R.id.layout_word_list_linearlayout:
+                    intent = new Intent(context.getApplicationContext(), StudyWord.class);
+                    intent.putExtra("when", data.getEnglish());
+                    context.startActivity(intent);
+                    break;
+
+                case R.id.textview_english_word_list:
+                    intent = new Intent(context.getApplicationContext(), StudyWord.class);
+                    intent.putExtra("when", data.getEnglish());
+                    context.startActivity(intent);
+                    break;
+
+                case R.id.textview_korean_word_list1:
+                    intent = new Intent(context.getApplicationContext(), StudyWord.class);
+                    intent.putExtra("when", data.getEnglish());
+                    context.startActivity(intent);
+                    break;
+
+                case R.id.textview_korean_word_list2:
+                    intent = new Intent(context.getApplicationContext(), StudyWord.class);
+                    intent.putExtra("when", data.getEnglish());
+                    context.startActivity(intent);
+                    break;
+
+                case R.id.textview_korean_word_list3:
+                    intent = new Intent(context.getApplicationContext(), StudyWord.class);
+                    intent.putExtra("when", data.getEnglish());
+                    context.startActivity(intent);
+                    break;
+            }
+        }
+    }
+>>>>>>> word_list_study
 }
