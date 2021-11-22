@@ -50,22 +50,22 @@ public class DatabaseControl extends AppCompatActivity {
             });
     }
 
-    public static ArrayList<Word> update(){
-        CollectionReference colRef = db.collection("word");
-        ArrayList<Word> word_list = new ArrayList<>();
-
-//        word_list.clear();
-        colRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(DocumentSnapshot doc : queryDocumentSnapshots){
-                    Log.d("word_list", doc.toObject(Word.class).getWord() + " " + doc.toObject(Word.class).getMean());
-                    word_list.add(doc.toObject(Word.class));
-                }
-                notifyDataSetChanged();
-            }
-        });
-    }
+//    public static ArrayList<Word> update(){
+//        CollectionReference colRef = db.collection("word");
+//        ArrayList<Word> word_list = new ArrayList<>();
+//
+////        word_list.clear();
+//        colRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                for(DocumentSnapshot doc : queryDocumentSnapshots){
+//                    Log.d("word_list", doc.toObject(Word.class).getWord() + " " + doc.toObject(Word.class).getMean());
+//                    word_list.add(doc.toObject(Word.class));
+//                }
+//                notifyDataSetChanged();
+//            }
+//        });
+//    }
 
 //    public
 }
