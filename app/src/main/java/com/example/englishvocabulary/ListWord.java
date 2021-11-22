@@ -1,12 +1,5 @@
 package com.example.englishvocabulary;
 
-<<<<<<< HEAD
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class ListWord extends AppCompatActivity {
-=======
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -49,14 +42,12 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 */
 
 
->>>>>>> word_list_study
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_word);
-<<<<<<< HEAD
-=======
 
 
 
@@ -232,6 +223,5 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 drawer.openDrawer(Gravity.LEFT);
             }
         }
->>>>>>> word_list_study
     }
 }

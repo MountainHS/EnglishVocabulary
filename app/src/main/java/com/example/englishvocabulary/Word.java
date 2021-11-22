@@ -1,8 +1,6 @@
 package com.example.englishvocabulary;
 
-<<<<<<< HEAD
-public class Word {
-=======
+
 import java.util.ArrayList;
 
 public class Word {
@@ -82,5 +80,4 @@ public class Word {
     public void setisOdap(boolean isOdap) {
         this.isOdap = isOdap;
     }
->>>>>>> word_list_study
 }

@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_main"
-<<<<<<< HEAD
-=======
     android:background="@color/white"
->>>>>>> word_list_study
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -24,11 +21,7 @@
             android:orientation="horizontal">
 
             <Button
-<<<<<<< HEAD
-                android:id="@+id/button_closeDrawerWithMain"
-=======
                 android:id="@+id/button_openDrawerWithMain"
->>>>>>> word_list_study
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

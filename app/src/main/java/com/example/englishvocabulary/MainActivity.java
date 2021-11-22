@@ -31,11 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         odab = (Button) findViewById(R.id.button_odap);
         test = (Button) findViewById(R.id.button_test);
         game = (Button) findViewById(R.id.button_game);
-<<<<<<< HEAD
-        drawerhandle = (Button) findViewById(R.id.button_closeDrawerWithMain);
-=======
         drawerhandle = (Button) findViewById(R.id.button_openDrawerWithMain);
->>>>>>> word_list_study
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
 
         myword.setOnClickListener(this);
@@ -58,20 +54,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(view==myword){
             Intent intent = new Intent(getApplicationContext(), ListWord.class);
-<<<<<<< HEAD
-=======
+
             intent.putExtra("LIST_VERSION", 1);
->>>>>>> word_list_study
             startActivity(intent);
         }
 
         else if(view==amgi){
-<<<<<<< HEAD
-            /*
-            Intent intent = new Intent(getApplicationContext(), study_word.class);
-            intent.putExtra("when", 1);
-            startActivity(intent);*/
-=======
             Intent intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("LIST_VERSION", 2);
             startActivity(intent);
@@ -89,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(view==test){
             Intent intent = new Intent(getApplicationContext(), TestSetting.class);
             startActivity(intent);
->>>>>>> word_list_study
         }
 
     }
