@@ -19,12 +19,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ArrayList<Word> array;
     TextView updateTest;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         array = new ArrayList<>();
+        update(array);
         updateTest = findViewById(R.id.textview_getTest);
         updateTest.setOnClickListener(this);
     }
@@ -33,14 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         TextView textView = (TextView) v;
         update(array);
-        for (Word w : array){
-            textView.setText(w.getKorean1());
-//            try {
-//                Thread.sleep(1000);
-//            }
-//            catch (Exception e){
-//                System.out.println(e);
-//            }
+
+        if (i <= array.size()-1){
+            textView.setText(array.get(i).getKorean1());
+            i++;
         }
     }
 }

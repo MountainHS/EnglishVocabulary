@@ -35,8 +35,8 @@ public class DatabaseControl extends AppCompatActivity{
         Map<String, Object> newWord = new HashMap<>();
         newWord.put("english", english);
         newWord.put("korean", korean);
-        newWord.put("memorize need", isMem);
-        newWord.put("recent test result", isOdap);
+        newWord.put("isMem", isMem);
+        newWord.put("isOdap", isOdap);
 
         engVoca.document()
                 .set(newWord)
@@ -58,6 +58,7 @@ public class DatabaseControl extends AppCompatActivity{
         engVoca.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                wordList.clear();
                 for(QueryDocumentSnapshot doc : task.getResult()){
                     Log.d("key:", doc.getId() + " value:" + doc.getData() + " type:" + doc.getData().get("korean").getClass().getName());
                     Word word = doc.toObject(Word.class);
