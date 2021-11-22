@@ -17,9 +17,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    ArrayList<Word> array;
-    TextView updateTest;
-    int i = 0;
+    Button myword;
+    Button amgi;
+    Button miamgi;
+    Button odab;
+    Button test;
+    Button game;
+    Button drawerhandle;
+    Button close_drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
