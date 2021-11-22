@@ -3,24 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< Updated upstream
-        <entry key="..\:/Users/hsgood01/AndroidStudioProjects/EnglishVocabulary/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-<<<<<<< HEAD
-=======
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/REAL_PROJECT/EnglishVocabulary/app/src/main/res/layout/activity_main.xml" value="0.2418478260869565" />
->>>>>>> Stashed changes
-=======
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_add_word.xml" value="0.1" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_drawer.xml" value="0.10462962962962963" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_list_word.xml" value="0.10462962962962963" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_list_word_show.xml" value="0.1" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_study_word.xml" value="0.10462962962962963" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_study_word_show.xml" value="0.10462962962962963" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_test.xml" value="0.264" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_test_setting.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/pys01/Desktop/Interface_APP/My_Project2/EnglishVocabulary/app/src/main/res/layout/activity_test_wrong.xml" value="0.25364583333333335" />
->>>>>>> word_list_study
+        <entry key="..\:/Users/hsgood01/AndroidStudioProjects/EnglishVocabulary/app/src/main/res/layout/activity_add_word.xml" value="0.13854166666666667" />
+        <entry key="..\:/Users/hsgood01/AndroidStudioProjects/EnglishVocabulary/app/src/main/res/layout/activity_drawer.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/hsgood01/AndroidStudioProjects/EnglishVocabulary/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/hsgood01/AndroidStudioProjects/EnglishVocabulary/app/src/main/res/layout/activity_test_wrong.xml" value="0.175" />
       </map>
     </option>
   </component>
