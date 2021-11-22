@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishVocabulary">
         <activity
+            android:name=".TestWrong"
+            android:exported="true" />
+        <activity
+            android:name=".Test"
+            android:exported="true" />
+        <activity
+            android:name=".TestSetting"
+            android:exported="true" />
+        <activity
+            android:name=".StudyWord_show"
+            android:exported="true" />
+        <activity
+            android:name=".StudyWord"
+            android:exported="true" />
+        <activity
+            android:name=".AddWord"
+            android:exported="true" />
+        <activity
+            android:name=".ListWord_show"
+            android:exported="true" />
+        <activity
+            android:name=".ListWord"
+            android:exported="true" />
+        <activity
+            android:name=".Drawer"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_WordList"
+    android:background="@color/white"
+    tools:context=".ListWord">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--영단어 위젯 창 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color"
+            android:gravity="center|left"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_openDrawerWithWordList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="8"
+                android:backgroundTint="@color/white"
+                android:text="영단어 리스트"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/button_addword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight = "1"
+                android:layout_marginRight="5dp"/>
+
+        </LinearLayout>
+
+        <!--영단어 옵션 창-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/button_sortList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정렬 기준"
+                android:textSize="16dp"
+                android:backgroundTint="@color/light_gray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_blue"
+                    android:text="암기"
+                    android:textSize="16dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="15dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--영단어 리스트, 일단 java에 임시로 단어 리스트 생성-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/activity_drawer"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

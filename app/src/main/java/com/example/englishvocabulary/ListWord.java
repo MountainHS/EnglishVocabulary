@@ -1,4 +1,4 @@
-package com.example.my_project;
+package com.example.englishvocabulary;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,20 +17,30 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.englishvocabulary.firestore.DatabaseControl;
+
 import java.util.ArrayList;
 
-public class list_word extends AppCompatActivity implements View.OnClickListener {
+public class ListWord extends AppCompatActivity implements View.OnClickListener {
 
+    ArrayList<Word> word; //파이어베이스에서 가져온 단어들 여기에 IN
     ArrayList<String> eng;
     ArrayList<String> kor1;
     ArrayList<String> kor2;
     ArrayList<String> kor3;
 
-    Button onoff_button;
-    private RecyclerAdapter adapter;
+    Button drawerOnoffButton;
+    private RecyclerAdaptor adapter;
 
-    Button addword_button;
-    Dialog addwordDialog;
+    Button addWordButton;
+    Dialog addWordDialog;
+
+    /*
+    Intent intent = getIntent(); //MainActivity에서 가져온 Intent
+    int whatListSelect = intent.getIntExtra("LIST_VERSION", 1);
+    //1 = 전체 리스트, 2 = 암기, 3 = 미암기, 4 = 오답노트
+*/
+
 
 
     @Override
@@ -39,16 +49,16 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_list_word);
 
 
-        onoff_button = findViewById(R.id.draweronoff_button2);
-        onoff_button.setOnClickListener(this);
 
-        addwordDialog = new Dialog(list_word.this);//초기화
-        addwordDialog.requestWindowFeature(getWindow().FEATURE_NO_TITLE);
-        addwordDialog.setContentView(R.layout.activity_add_word);
+        drawerOnoffButton = findViewById(R.id.button_openDrawerWithWordList);
+        drawerOnoffButton.setOnClickListener(this);
 
+        addWordDialog = new Dialog(ListWord.this);
+        addWordDialog.requestWindowFeature(getWindow().FEATURE_NO_TITLE);
+        addWordDialog.setContentView(R.layout.activity_add_word);
 
-        addword_button = findViewById(R.id.addword_button);
-        addword_button.setOnClickListener(new View.OnClickListener() {
+        addWordButton = findViewById(R.id.button_addword);
+        addWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 makeDialog(); //단어 추가창 생성
@@ -58,20 +68,19 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
         init_recyclerView(); //리스트 초기화
         getData(); //데이터 IN
 
-
     }
 
     private void makeDialog() {
-        addwordDialog.show();
+        addWordDialog.show();
         // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
 
 
-        EditText input_en = addwordDialog.findViewById(R.id.input_english);
-        EditText input_kor1 = addwordDialog.findViewById(R.id.input_korean1);
-        EditText input_kor2 = addwordDialog.findViewById(R.id.input_korean2);
-        EditText input_kor3 = addwordDialog.findViewById(R.id.input_korean3);
-        Button ok = addwordDialog.findViewById(R.id.inputword_ok_button);
-        Button no = addwordDialog.findViewById(R.id.inputword_no_button);
+        EditText input_en = addWordDialog.findViewById(R.id.edittext_input_english);
+        EditText input_kor1 = addWordDialog.findViewById(R.id.edittext_input_korean1);
+        EditText input_kor2 = addWordDialog.findViewById(R.id.edittext_input_korean2);
+        EditText input_kor3 = addWordDialog.findViewById(R.id.edittext_input_korean3);
+        Button ok = addWordDialog.findViewById(R.id.button_inputword_ok);
+        Button no = addWordDialog.findViewById(R.id.button_inputword_no);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,18 +96,26 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
                 input_kor3.setText("");
 
                 //Word_data에도 추가
-                Word_data data = new Word_data();
+                Word data = new Word(); //여기에 입력받은 단어가 word 형태로 저장
                 data.setEnglish(en);
                 data.setKorean1(ko1);
                 data.setKorean2(ko2);
                 data.setKorean3(ko3);
                 data.setWhen(eng.size());
+                data.setisMen(true);
+                data.setisOdap(false);
 
-                //이 밑에 추가한 단어를 study_word, list_word의 arrayList에 append
+                //파이어베이스에 단어 추가
+                DatabaseControl.addWord(data);
+
+                word.add(data); //data에 set 한거 출력할 ArrayList에 추가
                 eng.add(en);
                 kor1.add(ko1);
                 kor2.add(ko2);
                 kor3.add(ko3);
+                ////////////////////////////////이 부분을 eng->word로 바꿈
+                //이 밑에 추가한 단어를 study_word, list_word의 arrayList에 append
+
 
                 adapter.addItem(data); //adapter에 word_data(영+한)을 추가
                 //adapter.notifyDataSetChanged();
@@ -108,7 +125,7 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addwordDialog.dismiss();
+                addWordDialog.dismiss();
             }
         });
         adapter.notifyDataSetChanged();
@@ -120,16 +137,18 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerAdapter();
+        adapter = new RecyclerAdaptor();
         recyclerView.setAdapter(adapter);
     }
 
     private void getData() {
+        //임시
+
+        word = new ArrayList<>();
         eng = new ArrayList<>();
         kor1 = new ArrayList<>();
         kor2 = new ArrayList<>();
         kor3 = new ArrayList<>();
-
 
         eng.add("banana");
         kor1.add("바나나");
@@ -173,30 +192,35 @@ public class list_word extends AppCompatActivity implements View.OnClickListener
         kor3.add("예제6");
 
         for (int i = 0; i < eng.size(); i++) { //이 구문 때문에, kor, eng다 크기 맞추기
-            Word_data data = new Word_data();
+            Word data = new Word();
             data.setEnglish(eng.get(i));
             data.setKorean1(kor1.get(i));
             data.setKorean2(kor2.get(i));
             data.setKorean3(kor3.get(i));
             data.setWhen(i);
-
+            if(i%2==0) {
+                data.setisMen(false);
+                data.setisOdap(false);
+            }
+            else{
+                data.setisMen(true);
+                data.setisOdap(true);
+            }
 
             adapter.addItem(data); //adapter에 word_data(영+한)을 추가
         }
 
         adapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onClick(View view) {
-        if (view == onoff_button) {
-            DrawerLayout drawer = findViewById(R.id.word_list_activity);
+        if (view == drawerOnoffButton) {
+            DrawerLayout drawer = findViewById(R.id.activity_WordList);
             if (!drawer.isDrawerOpen(Gravity.LEFT)) {
                 drawer.openDrawer(Gravity.LEFT);
             }
         }
-
     }
-
-
 }
