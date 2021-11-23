@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseControl extends AppCompatActivity{
-    public static FirebaseFirestore db = FirebaseFirestore.getInstance();;
+    public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static CollectionReference engVoca = db.collection("EngVoca");
     public static CollectionReference engVoca2 = db.collection("EngVoca2");
     public static CollectionReference engVoca3 = db.collection("EngVoca3");
@@ -42,7 +42,7 @@ public class DatabaseControl extends AppCompatActivity{
         newWord.put("isMem", word.getisMem());
         newWord.put("isOdap", word.getisOdap());
 
-        engVoca.document()
+        engVoca.document(word.getEnglish())
                 .set(newWord)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
