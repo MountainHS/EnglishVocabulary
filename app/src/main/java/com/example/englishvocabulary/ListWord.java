@@ -113,7 +113,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 data.setisOdap(false);
 
                 //파이어베이스에 단어 추가
-                DatabaseControl.addWord(data, "EngVoca");
+                DatabaseControl.addWord("EngVoca", data);
 
                 word.add(data); //data에 set 한거 출력할 ArrayList에 추가
                 eng.add(en);

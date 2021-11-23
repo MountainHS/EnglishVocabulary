@@ -35,7 +35,7 @@ public class DatabaseControl extends AppCompatActivity{
     // 이미 있는 단어가 있을때 구현해야함
     //// 뜻이 다를 경우 기존 문서에 뜻 추가
     //// 뜻까지 다 같은 경우 종료
-    public static void addWord(Word word, String collectionName){ //파이어베이스에 단어 추가
+    public static void addWord(String collectionName, Word word){ //파이어베이스에 단어 추가
         Map<String, Object> newWord = new HashMap<>();
         newWord.put("english", word.getEnglish());
         newWord.put("korean", word.getKoreanAll());
