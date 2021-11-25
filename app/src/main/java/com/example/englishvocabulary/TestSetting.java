@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.englishvocabulary.firestore.DatabaseControl;
+
+import java.util.ArrayList;
 
 public class TestSetting extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,6 +21,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     Button plusMax;
     Button startTest;
     EditText inputManyWord;
+    ArrayList<Word> word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +41,21 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         plusMax.setOnClickListener(this);
         startTest.setOnClickListener(this);
 
+        //일단 바로 engVoca에 있는 단어 갖고오기
+        DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
+            @Override
+            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                word = fetchedWordList;
+            }
+        });
+
+
     }
 
     @Override
     public void onClick(View view) {
+        String many;
+        int manyTestWord;
         if(view == plus10){
             inputManyWord.setText("");
             inputManyWord.setText("10");
@@ -57,11 +74,21 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
             inputManyWord.setText("100");
         }
         else if(view == startTest){
-            String many = inputManyWord.getText().toString();
-            int manyTestWord = Integer.parseInt(many);
+            many = inputManyWord.getText().toString();
+            manyTestWord = Integer.parseInt(many);
             Intent intent = new Intent(getApplicationContext(), Test.class);
+            intent.putExtra("TestArray", word);
             intent.putExtra("ManyTestWord", manyTestWord);
             startActivity(intent);
+        }
+        
+        many = inputManyWord.getText().toString();
+        manyTestWord = Integer.parseInt(many);
+        //내가 설정한 문제가 many보다 많으면, ArrayList수로 문제 수를 고정하고 Toast message로 이를 알려준다.
+        if(manyTestWord > word.size()){
+            Toast.makeText(getApplicationContext(), "설정한 문제 수가 단어 장 수보다 많아 최대 단어장 수로 조정합니다...", Toast.LENGTH_SHORT).show();
+            inputManyWord.setText(word.size()+"");
+            manyTestWord = word.size();
         }
     }
 }
