@@ -198,7 +198,7 @@
                     android:layout_marginRight="20dp"
                     android:backgroundTint="@color/light_gray"
                     android:gravity="left|center_vertical"
-                    android:text="Game"
+                    android:text="종료"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 

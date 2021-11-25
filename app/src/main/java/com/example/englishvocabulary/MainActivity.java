@@ -84,5 +84,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(getApplicationContext(), TestSetting.class);
             startActivity(intent);
         }
+
+        else if(view==game){
+            moveTaskToBack(true);
+            finishAndRemoveTask();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
     }
 }
