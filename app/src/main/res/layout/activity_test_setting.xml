@@ -21,6 +21,7 @@
 
             <Button
                 android:id="@+id/button_openDrawerWithTestSetting"
+                android:backgroundTint="@color/light_blue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

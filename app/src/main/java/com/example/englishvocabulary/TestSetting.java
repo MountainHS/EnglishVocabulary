@@ -70,10 +70,10 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
             inputManyWord.setText("");
             inputManyWord.setText("50");
         }
-        //일단 100개로 설정
+        //arraylist size로 조정
         else if(view == plusMax){
             inputManyWord.setText("");
-            inputManyWord.setText("100");
+            inputManyWord.setText(word.size() + "");
         }
         else if(view == startTest){
             many = inputManyWord.getText().toString();
