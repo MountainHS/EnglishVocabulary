@@ -48,9 +48,9 @@ public class StudyWord extends AppCompatActivity {
 
         intent = getIntent();
 
-        int whatListSelect = intent.getIntExtra("whatListSelect", 1);
+        int ListVersion = intent.getIntExtra("ListVersion", 1);
 
-        if(whatListSelect == 4) {
+        if(ListVersion == 4) {
             DatabaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {

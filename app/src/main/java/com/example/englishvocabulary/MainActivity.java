@@ -53,7 +53,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Intent intent;
-
+        /*순서
+        1. MainActivity에서 intent로 ListWord에 ListVersion을 보낸다. -> ListWord에서 List맞게 DB에 갖고온다.
+        2. ListWord에서 RecyclerAdaptor로 생성자를 통해, ListVersion을 보낸다.
+        3. RecyclerAdaptor에서 ListVersion을 StudyWord로 intent로 보낸다. -> StudyWord에서 intent로 받은 것을 통해 DB에서 갖고온다.
+        */
         if(view==drawerhandle){
             DrawerLayout drawer = findViewById(R.id.activity_main);
             if(!drawer.isDrawerOpen(Gravity.LEFT)){
