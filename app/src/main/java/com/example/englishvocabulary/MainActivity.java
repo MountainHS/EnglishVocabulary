@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Intent intent;
+
         if(view==drawerhandle){
             DrawerLayout drawer = findViewById(R.id.activity_main);
             if(!drawer.isDrawerOpen(Gravity.LEFT)){
@@ -59,29 +61,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else if(view==myword){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-
-            intent.putExtra("LIST_VERSION", 1);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 1);
             startActivity(intent);
         }
 
         else if(view==amgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 2);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 2);
             startActivity(intent);
         }
         else if(view==miamgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 3);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 3);
             startActivity(intent);
         }
         else if(view==odab){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 4);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 4);
             startActivity(intent);
         }
         else if(view==test){
-            Intent intent = new Intent(getApplicationContext(), TestSetting.class);
+            intent = new Intent(getApplicationContext(), TestSetting.class);
             startActivity(intent);
         }
 

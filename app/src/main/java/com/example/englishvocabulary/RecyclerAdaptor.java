@@ -27,7 +27,14 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     //extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
     ArrayList<Word> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
     Context context; // 어뎁터 안에서 Intent 할 때
+    int whatListSelect;
 
+    RecyclerAdaptor(){}
+
+    //ListWord에서 어느 리스트 선택했는지 intent로 전달하기 위해 사용
+    RecyclerAdaptor(int whatListSelect) {
+        this.whatListSelect = whatListSelect;
+    }
 
     @NonNull
     @Override
@@ -107,35 +114,35 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                 case R.id.layout_word_list_linearlayout:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
-
+                    intent.putExtra("whatListSelect", whatListSelect);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_english_word_list:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
-
+                    intent.putExtra("whatListSelect", whatListSelect);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list1:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
-
+                    intent.putExtra("whatListSelect", whatListSelect);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list2:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
-
+                    intent.putExtra("whatListSelect", whatListSelect);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list3:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
-
+                    intent.putExtra("whatListSelect", whatListSelect);
                     context.startActivity(intent);
                     break;
             }

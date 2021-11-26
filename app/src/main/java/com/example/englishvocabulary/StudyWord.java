@@ -48,15 +48,29 @@ public class StudyWord extends AppCompatActivity {
 
         intent = getIntent();
 
+        int whatListSelect = intent.getIntExtra("whatListSelect", 1);
 
-        DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
-            @Override
-            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                word = fetchedWordList;
-                startMyAdaptor();
+        if(whatListSelect == 4) {
+            DatabaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    startMyAdaptor();
 
-            }
-        });
+                }
+            });
+        }
+
+        else{
+            DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    startMyAdaptor();
+
+                }
+            });
+        }
 
     }
 
