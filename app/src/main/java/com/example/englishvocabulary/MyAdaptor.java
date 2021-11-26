@@ -84,10 +84,11 @@ public class MyAdaptor extends PagerAdapter {
 
 
         //원래는 eng의 position의 get
-        english_word.setText(word.get(position+when).getEnglish());
-        korean_word1.setText(word.get(position+when).getKorean1());
-        korean_word2.setText(word.get(position+when).getKorean2());
-        korean_word3.setText(word.get(position+when).getKorean3());
+        //position+=when;
+        english_word.setText(word.get(position).getEnglish());
+        korean_word1.setText(word.get(position).getKorean1());
+        korean_word2.setText(word.get(position).getKorean2());
+        korean_word3.setText(word.get(position).getKorean3());
 
         //여기서 +1 or -1로 어떻게 이동하냐 이말이다...
 

@@ -54,16 +54,24 @@ public class StudyWord extends AppCompatActivity {
             public void OnSuccess(ArrayList<Word> fetchedWordList) {
                 word = fetchedWordList;
                 startMyAdaptor();
-                
+
             }
         });
 
     }
 
     public void startMyAdaptor(){
+        int when_go = 0;
         String whenString = intent.getStringExtra("when");
+        for(int i=0; i<word.size(); i++){
+            if(word.get(i).getEnglish().equals(whenString)){
+                when_go = i;
+                break;
+            }
+        }
         pager = (ViewPager) findViewById(R.id.viewpager);
         MyAdaptor myAdaptor = new MyAdaptor(this, word, whenString);
         pager.setAdapter(myAdaptor);
+        pager.setCurrentItem(when_go);
     }
 }
