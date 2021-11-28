@@ -57,7 +57,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         String many;
-        int manyTestWord;
+        int manyTestWord = 0;
         if(view == plus10){
             inputManyWord.setText("");
             inputManyWord.setText("10");
@@ -76,17 +76,26 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
             inputManyWord.setText(word.size() + "");
         }
         else if(view == startTest){
+            Log.v("test","startTest 클릭");
             many = inputManyWord.getText().toString();
+            manyTestWord = Integer.parseInt(many);
             if(many.equals("") || many.equals(" ")){
                 Toast.makeText(getApplicationContext(), "문제 수를 입력하세요", Toast.LENGTH_SHORT).show();
             }
             else {
-                manyTestWord = Integer.parseInt(many);
-                Collections.shuffle(word);
-                Intent intent = new Intent(getApplicationContext(), Test.class);
-                intent.putExtra("TestArray", word);
-                intent.putExtra("ManyTestWord", manyTestWord);
-                startActivity(intent);
+                if(manyTestWord <= word.size()) {
+                    manyTestWord = Integer.parseInt(many);
+                    Collections.shuffle(word);
+                    Intent intent = new Intent(getApplicationContext(), Test.class);
+                    intent.putExtra("TestArray", word);
+                    intent.putExtra("ManyTestWord", manyTestWord);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "설정한 문제 수가 단어 장 수보다 많아 최대 단어장 수로 조정합니다", Toast.LENGTH_SHORT).show();
+                    inputManyWord.setText(word.size() + "");
+                    manyTestWord = word.size();
+                }
             }
         }
         
