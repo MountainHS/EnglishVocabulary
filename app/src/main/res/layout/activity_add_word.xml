@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddWord">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,10 +16,8 @@
 
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="8"
             android:backgroundTint="@color/white"
             android:text="새 단어 추가하기"
             android:textColor="@color/white"
@@ -107,41 +106,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:weightSum="10"
+        android:gravity="center">
 
         <Button
             android:id="@+id/button_inputword_ok"
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_blue"
             android:text="추가"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="20dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"/>
-
-        <TextView
+            android:textSize="20dp"/>
+        <Space
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
-
         <Button
             android:id="@+id/button_inputword_no"
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_blue"
             android:text="취소"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="20dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            />
+            android:textSize="20dp"/>
 
     </LinearLayout>
 </LinearLayout>
