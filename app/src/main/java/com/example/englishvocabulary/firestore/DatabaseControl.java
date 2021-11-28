@@ -17,7 +17,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -28,7 +27,6 @@ import java.util.Map;
 
 public class DatabaseControl extends AppCompatActivity{
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private static Query queryResult;
 
     public interface OnGetDataListener{
         public void OnSuccess(ArrayList<Word> fetchedWordList);
@@ -61,39 +59,10 @@ public class DatabaseControl extends AppCompatActivity{
                 });
     }
 
-    public static void queryOrder(String collectionName, String standard, boolean isAsc){
-        CollectionReference targetVoca = db.collection(collectionName);
-
-        if (isAsc == true){
-            queryResult = targetVoca.orderBy(standard, Query.Direction.ASCENDING);
-        }
-        else {
-            queryResult = targetVoca.orderBy(standard, Query.Direction.DESCENDING);
-        }
-//        return queryResult;
-    }
-
     public static void update(String collectionName, OnGetDataListener listener){
         CollectionReference targetVoca = db.collection(collectionName);
         ArrayList<Word> wordList = new ArrayList<>();
-        targetVoca.orderBy("korean").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                wordList.clear();
-                for(QueryDocumentSnapshot doc : task.getResult()){
-                    Log.d("key:", doc.getId() + " value:" + doc.getData());
-                    Word word = doc.toObject(Word.class);
-                    wordList.add(word);
-                    wordList.get(wordList.size()-1).setKorenAll((ArrayList<String>) doc.getData().get("korean"));
-                }
-                listener.OnSuccess(wordList);
-            }
-        });
-    }
-
-    public static void update(OnGetDataListener listener){
-        ArrayList<Word> wordList = new ArrayList<>();
-        queryResult.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        targetVoca.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 wordList.clear();
