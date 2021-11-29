@@ -2,6 +2,6 @@ package com.example.englishvocabulary;
 
 public class TextStatus {
 
-    static boolean engStatus = true;
-    static boolean korStatus = true;
+    static boolean engStatus = false;
+    static boolean korStatus = false;
 }

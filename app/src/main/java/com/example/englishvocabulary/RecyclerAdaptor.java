@@ -1,6 +1,7 @@
 package com.example.englishvocabulary;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.example.englishvocabulary.firestore.DatabaseControl;
+
 //일단 어뎁터로 연속으로 보여줄 클래스를 정하기 (배열에 IN)
 //그리고 해당 배열에 담긴 정보들을 화면상에 출력 - ItemViewHolder
 
@@ -24,7 +27,14 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     //extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
     ArrayList<Word> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
     Context context; // 어뎁터 안에서 Intent 할 때
+    int ListVersion;
 
+    RecyclerAdaptor(){}
+
+    //ListWord에서 어느 리스트 선택했는지 intent로 전달하기 위해 사용
+    RecyclerAdaptor(int ListVersion) {
+        this.ListVersion = ListVersion;
+    }
 
     @NonNull
     @Override
@@ -63,6 +73,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         private TextView kor2;
         private TextView kor3;
         private Word data;
+        private ArrayList<Word> sendData;
         private LinearLayout linearLayout;
 
 
@@ -103,30 +114,35 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                 case R.id.layout_word_list_linearlayout:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
+                    intent.putExtra("ListVersion", ListVersion);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_english_word_list:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
+                    intent.putExtra("ListVersion", ListVersion);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list1:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
+                    intent.putExtra("ListVersion", ListVersion);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list2:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
+                    intent.putExtra("ListVersion", ListVersion);
                     context.startActivity(intent);
                     break;
 
                 case R.id.textview_korean_word_list3:
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
+                    intent.putExtra("ListVersion", ListVersion);
                     context.startActivity(intent);
                     break;
             }

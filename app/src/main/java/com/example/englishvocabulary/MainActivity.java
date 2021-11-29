@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.englishvocabulary.firestore.DatabaseControl;
@@ -28,15 +29,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//    // databaseControl test start
-//    boolean fileReadPermission;
-//    boolean fileWritePermission;
-//    DatabaseControl dbC;
-//    private static final String TAG = "MyActivity";
-//    // end
-    Button myword;
-    Button amgi;
-    Button miamgi;
+//    Button myword;
+//    Button amgi;
+//    Button miamgi;
+    LinearLayout myword;
+    LinearLayout amgi;
+    LinearLayout miamgi;
+
     Button odab;
     Button test;
     Button game;
@@ -52,9 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        dbC.storagePermissionCheck(this);
 //        // end
 
-        myword = (Button) findViewById(R.id.button_myword);
-        amgi = (Button) findViewById(R.id.button_amgi);
-        miamgi = (Button) findViewById(R.id.button_miamgi);
+//        myword = (Button) findViewById(R.id.button_myword);
+//        amgi = (Button) findViewById(R.id.button_amgi);
+//        miamgi = (Button) findViewById(R.id.button_miamgi);
+        myword = findViewById(R.id.myword);
+        amgi = findViewById(R.id.amgi);
+        miamgi = findViewById(R.id.miamgi);
+
         odab = (Button) findViewById(R.id.button_odap);
         test = (Button) findViewById(R.id.button_test);
         game = (Button) findViewById(R.id.button_game);
@@ -72,6 +75,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Intent intent;
+        /*순서
+        1. MainActivity에서 intent로 ListWord에 ListVersion을 보낸다. -> ListWord에서 List맞게 DB에 갖고온다.
+        2. ListWord에서 RecyclerAdaptor로 생성자를 통해, ListVersion을 보낸다.
+        3. RecyclerAdaptor에서 ListVersion을 StudyWord로 intent로 보낸다. -> StudyWord에서 intent로 받은 것을 통해 DB에서 갖고온다.
+        */
         if(view==drawerhandle){
             DrawerLayout drawer = findViewById(R.id.activity_main);
             if(!drawer.isDrawerOpen(Gravity.LEFT)){
@@ -79,53 +88,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else if(view==myword){
-//            //databaseControl test start
-//            String parentDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-//            File testFile = new File(parentDir + "/test.txt");
-//            Log.d(TAG, "file test " + testFile.getAbsolutePath());
-//            try{
-//                if (!new File(parentDir).exists()){
-//                    Log.d(TAG, "!!!!!!!!!!!!!!!!!!!");
-//                }
-//                if (!testFile.exists()){
-//                    testFile.createNewFile();
-//                }
-//                FileWriter testWriter = new FileWriter(testFile);
-//                testWriter.write("culture\t문화, 교양\n" +
-//                        "experience\t경험, 경험하다");
-//                Log.d(TAG, "write test");
-//                testWriter.close();
-//            } catch(FileNotFoundException e){
-//                Log.d(TAG, "파일을 열 수 없음");
-//            } catch(IOException e){
-//                Log.d(TAG, "입출력 오류");
-//            }
-//            dbC.uploadVocabularyDataSet("testVoca", testFile.getAbsolutePath());
-//            //end
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-
-            intent.putExtra("LIST_VERSION", 1);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 1);
             startActivity(intent);
         }
 
         else if(view==amgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 2);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 2);
             startActivity(intent);
         }
         else if(view==miamgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 3);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 3);
             startActivity(intent);
         }
         else if(view==odab){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 4);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 4);
             startActivity(intent);
         }
         else if(view==test){
-            Intent intent = new Intent(getApplicationContext(), TestSetting.class);
+            intent = new Intent(getApplicationContext(), TestSetting.class);
             startActivity(intent);
+        }
+
+        else if(view==game){
+            moveTaskToBack(true);
+            finishAndRemoveTask();
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 

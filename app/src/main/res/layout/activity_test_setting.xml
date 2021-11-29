@@ -21,6 +21,7 @@
 
             <Button
                 android:id="@+id/button_openDrawerWithTestSetting"
+                android:backgroundTint="@color/light_blue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -54,45 +55,17 @@
             android:textColor="@color/black"
             android:textSize="30dp" />
 
-        <RadioGroup
+        <!--spinner를 사용하자-->
+        <Spinner
+            android:id="@+id/spinner_ListSelect"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radiobutton_all"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="전체"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <RadioButton
-                android:id="@+id/radiobutton_amgi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="암기"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <RadioButton
-                android:id="@+id/radiobutton_miamgi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="미암기"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-        </RadioGroup>
+            android:layout_height="wrap_content"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <TextView

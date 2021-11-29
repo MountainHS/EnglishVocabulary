@@ -23,6 +23,7 @@
 
             <Button
                 android:id="@+id/button_openDrawerWithWordList"
+                android:backgroundTint="@color/light_blue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -40,6 +41,10 @@
 
             <Button
                 android:id="@+id/button_addword"
+                android:backgroundTint="@color/light_blue"
+                android:text="A"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight = "1"

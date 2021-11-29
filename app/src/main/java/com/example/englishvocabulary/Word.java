@@ -1,8 +1,9 @@
 package com.example.englishvocabulary;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Word {
+public class Word implements Serializable {
 
     private String eng; //영단어
     private ArrayList<String> kor = new ArrayList<>(); //해석 최대 3개
