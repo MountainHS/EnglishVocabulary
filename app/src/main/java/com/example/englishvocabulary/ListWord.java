@@ -37,6 +37,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
     Button addWordButton;
     Dialog addWordDialog;
+    DatabaseControl databaseControl;
 
 
     Intent receiveIntent; //MainActivity에서 가져온 Intent
@@ -52,6 +53,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_word);
+        databaseControl = new DatabaseControl();
 
         receiveIntent = getIntent();
         ListVersion = receiveIntent.getIntExtra("ListVersion", 1);
@@ -141,10 +143,10 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
                 //파이어베이스에 단어 추가
                 if(ListVersion == 4) {
-                    DatabaseControl.addWord("OdapVoca", data);
+                    databaseControl.addWord("OdapVoca", data);
                 }
                 else{
-                    DatabaseControl.addWord("EngVoca", data);
+                    databaseControl.addWord("EngVoca", data);
                 }
 
                 word.add(data); //data에 set 한거 출력할 ArrayList에 추가
@@ -157,6 +159,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
 
                 adapter.addItem(data); //adapter에 word_data(영+한)을 추가
+
                 //adapter.notifyDataSetChanged();
             }
         });
@@ -193,7 +196,6 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
             kor2.add(w.getKorean2());
             kor3.add(w.getKorean3());
         }
-
 
         for (int i = 0; i < eng.size(); i++) { //이 구문 때문에, kor, eng다 크기 맞추기
             Word data = new Word();

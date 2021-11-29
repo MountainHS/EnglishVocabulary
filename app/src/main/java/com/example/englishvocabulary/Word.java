@@ -9,7 +9,7 @@ public class Word implements Serializable {
     private ArrayList<String> kor = new ArrayList<>(); //해석 최대 3개
     //kor.get(0) kor.get(1) kor.get(2)
 
-    Word(){
+    public Word(){
         kor.add("");
         kor.add("");
         kor.add("");

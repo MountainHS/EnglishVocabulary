@@ -1,20 +1,31 @@
 package com.example.englishvocabulary;
 
-import static com.example.englishvocabulary.firestore.DatabaseControl.update;
+import static com.example.englishvocabulary.firestore.DatabaseControl.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.englishvocabulary.firestore.DatabaseControl;
+
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        // databaseControl test start
+//        dbC = new DatabaseControl();
+//        dbC.storagePermissionCheck(this);
+//        // end
 
 //        myword = (Button) findViewById(R.id.button_myword);
 //        amgi = (Button) findViewById(R.id.button_amgi);
@@ -56,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test.setOnClickListener(this);
         game.setOnClickListener(this);
         drawerhandle.setOnClickListener(this);
-
     }
 
     @Override
@@ -105,4 +119,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == 200 && grantResults.length > 0) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                fileReadPermission = true;
+//            if (grantResults[1] == PackageManager.PERMISSION_GRANTED)
+//                fileWritePermission = true;
+//        }
+//    }
 }
