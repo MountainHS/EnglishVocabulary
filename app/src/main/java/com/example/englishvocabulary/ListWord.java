@@ -34,6 +34,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
     Button addWordButton;
     Dialog addWordDialog;
+    DatabaseControl databaseControl;
 
     /*
     Intent intent = getIntent(); //MainActivity에서 가져온 Intent
@@ -48,7 +49,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_word);
-
+        databaseControl = new DatabaseControl();
 
 
         drawerOnoffButton = findViewById(R.id.button_openDrawerWithWordList);
@@ -68,7 +69,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
 
         init_recyclerView(); //리스트 초기화
-        DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
+        databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
             @Override
             public void OnSuccess(ArrayList<Word> fetchedWordList) {
                 word = fetchedWordList;
@@ -113,7 +114,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 data.setisOdap(false);
 
                 //파이어베이스에 단어 추가
-                DatabaseControl.addWord("EngVoca", data);
+                databaseControl.addWord("EngVoca", data);
 
                 word.add(data); //data에 set 한거 출력할 ArrayList에 추가
                 eng.add(en);
