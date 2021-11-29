@@ -25,7 +25,6 @@ import com.example.englishvocabulary.firestore.DatabaseControl;
 import java.util.ArrayList;
 
 public class ListWord extends AppCompatActivity implements View.OnClickListener {
-
     ArrayList<Word> word; //파이어베이스에서 가져온 단어들 여기에 IN
     ArrayList<String> eng;
     ArrayList<String> kor1;
@@ -78,7 +77,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
         //일단 오답노트랑 그냥 단어장 구분
         if(ListVersion == 4){
-            DatabaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener(){
+            databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener(){
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;
@@ -90,7 +89,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
 
         else {
-            DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+            databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;

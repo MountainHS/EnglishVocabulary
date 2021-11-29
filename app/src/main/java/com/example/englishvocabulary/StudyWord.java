@@ -34,11 +34,13 @@ public class StudyWord extends AppCompatActivity {
     ArrayList<String> kor3;
 
     Intent intent;
+    DatabaseControl databaseControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_word);
+        databaseControl = new DatabaseControl();
 
         pager = findViewById(R.id.viewpager);
         eng = new ArrayList<>();
@@ -51,7 +53,7 @@ public class StudyWord extends AppCompatActivity {
         int ListVersion = intent.getIntExtra("ListVersion", 1);
 
         if(ListVersion == 4) {
-            DatabaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
+            databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;
@@ -62,7 +64,7 @@ public class StudyWord extends AppCompatActivity {
         }
 
         else{
-            DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+            databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;

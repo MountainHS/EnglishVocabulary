@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TestSetting extends AppCompatActivity implements View.OnClickListener {
-
+    DatabaseControl databaseControl;
     Button plus10;
     Button plus20;
     Button plus50;
@@ -27,6 +27,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        databaseControl = new DatabaseControl();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_setting);
 
@@ -44,7 +45,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         startTest.setOnClickListener(this);
 
         //일단 바로 engVoca에 있는 단어 갖고오기
-        DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
+        databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
             @Override
             public void OnSuccess(ArrayList<Word> fetchedWordList) {
                 word = fetchedWordList;

@@ -16,7 +16,7 @@ import com.example.englishvocabulary.firestore.DatabaseControl;
 import java.util.ArrayList;
 
 public class Test extends AppCompatActivity implements View.OnClickListener {
-
+    DatabaseControl databaseControl;
     Intent intent;
     TextView alltext;
     TextView nowtext;
@@ -43,7 +43,7 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-
+        databaseControl = new DatabaseControl();
         intent = getIntent();
         testWord = (ArrayList<Word>) intent.getSerializableExtra("TestArray");
         manyTest = intent.getIntExtra("ManyTestWord", 0);
@@ -143,7 +143,7 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 //다이얼로그를 띄우고 난 뒤 바로 다음으로 넘어가서 문제....
-                DatabaseControl.addWord("OdapVoca", testWord.get(i-2));
+                databaseControl.addWord("OdapVoca", testWord.get(i-2));
                 Toast.makeText(getApplicationContext(), testWord.get(i-2).getEnglish() + "추가 완료", Toast.LENGTH_SHORT).show();
 
                 addWrongWordDialog.dismiss();
