@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishVocabulary">
         <activity
+            android:name=".TestResult"
+            android:exported="true" />
+        <activity
             android:name=".TestWrong"
             android:exported="true" />
         <activity

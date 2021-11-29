@@ -45,16 +45,16 @@ public class MyAdaptor extends PagerAdapter {
     private String engdColor()
     {
         if(TextStatus.engStatus==false)
-            return "#FF000000";
-        else
             return "#d8edf3";
+        else
+            return "#ff000000";
     }
     private String korColor()
     {
         if(TextStatus.korStatus == false)
-            return "#FF000000";
-        else
             return "#ffffff";
+        else
+            return "#ff000000";
     }
 
     @Override
@@ -84,10 +84,11 @@ public class MyAdaptor extends PagerAdapter {
 
 
         //원래는 eng의 position의 get
-        english_word.setText(word.get(position+when).getEnglish());
-        korean_word1.setText(word.get(position+when).getKorean1());
-        korean_word2.setText(word.get(position+when).getKorean2());
-        korean_word3.setText(word.get(position+when).getKorean3());
+        //position+=when;
+        english_word.setText(word.get(position).getEnglish());
+        korean_word1.setText(word.get(position).getKorean1());
+        korean_word2.setText(word.get(position).getKorean2());
+        korean_word3.setText(word.get(position).getKorean3());
 
         //여기서 +1 or -1로 어떻게 이동하냐 이말이다...
 
@@ -99,8 +100,8 @@ public class MyAdaptor extends PagerAdapter {
         english_show_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextStatus.engStatus = !TextStatus.engStatus;
                 english_word.setTextColor(Color.parseColor(engdColor()));
+                TextStatus.engStatus = !TextStatus.engStatus;
             }
         });
 
@@ -108,10 +109,10 @@ public class MyAdaptor extends PagerAdapter {
         korean_show_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextStatus.korStatus = !TextStatus.korStatus;
                 korean_word1.setTextColor(Color.parseColor(korColor()));
                 korean_word2.setTextColor(Color.parseColor(korColor()));
                 korean_word3.setTextColor(Color.parseColor(korColor()));
+                TextStatus.korStatus = !TextStatus.korStatus;
             }
         });
 

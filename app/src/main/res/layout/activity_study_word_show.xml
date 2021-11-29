@@ -32,18 +32,7 @@
             android:text="Korean"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_blue"
-            android:layout_marginLeft="100dp"
-            android:text="암기"
-            android:textSize="16dp"/>
 
-        <CheckBox
-            android:id="@+id/checkbox_isMemStudyWord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

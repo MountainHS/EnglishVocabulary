@@ -38,11 +38,12 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
     Button addWordButton;
     Dialog addWordDialog;
 
-    /*
-    Intent intent = getIntent(); //MainActivity에서 가져온 Intent
-    int whatListSelect = intent.getIntExtra("LIST_VERSION", 1);
+
+    Intent receiveIntent; //MainActivity에서 가져온 Intent
+    Intent goIntent;
+    int ListVersion;
     //1 = 전체 리스트, 2 = 암기, 3 = 미암기, 4 = 오답노트
-*/
+
 
 
 
@@ -52,6 +53,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_word);
 
+        receiveIntent = getIntent();
+        ListVersion = receiveIntent.getIntExtra("ListVersion", 1);
 
 
         drawerOnoffButton = findViewById(R.id.button_openDrawerWithWordList);
@@ -70,8 +73,29 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
         });
 
         init_recyclerView(); //리스트 초기화
-        getData(); //데이터 IN
 
+        //일단 오답노트랑 그냥 단어장 구분
+        if(ListVersion == 4){
+            DatabaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    getData(); //데이터 IN
+                }
+            });
+        }
+
+
+
+        else {
+            DatabaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    getData(); //데이터 IN
+                }
+            });
+        }
     }
 
     private void makeDialog() {
@@ -116,7 +140,12 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 data.setisOdap(false);
 
                 //파이어베이스에 단어 추가
-                DatabaseControl.addWord(data);
+                if(ListVersion == 4) {
+                    DatabaseControl.addWord("OdapVoca", data);
+                }
+                else{
+                    DatabaseControl.addWord("EngVoca", data);
+                }
 
                 word.add(data); //data에 set 한거 출력할 ArrayList에 추가
                 eng.add(en);
@@ -147,59 +176,24 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerAdaptor();
+        adapter = new RecyclerAdaptor(ListVersion);
         recyclerView.setAdapter(adapter);
     }
 
     private void getData() {
-        //임시
 
-        word = new ArrayList<>();
         eng = new ArrayList<>();
         kor1 = new ArrayList<>();
         kor2 = new ArrayList<>();
         kor3 = new ArrayList<>();
 
-        eng.add("banana");
-        kor1.add("바나나");
-        kor2.add("");
-        kor3.add("");
-        eng.add("apple");
-        kor1.add("사과");
-        kor2.add("");
-        kor3.add("");
-        eng.add("duplicate");
-        kor1.add("복제");
-        kor2.add("복사하다");
-        kor3.add("");
-        eng.add("watermelon");
-        kor1.add("수박");
-        kor2.add("");
-        kor3.add("");
-        eng.add("example1");
-        kor1.add("예제1");
-        kor2.add("");
-        kor3.add("");
-        eng.add("example2");
-        kor1.add("예제2");
-        kor2.add("예제2");
-        kor3.add("");
-        eng.add("example3");
-        kor1.add("예제3");
-        kor2.add("예제3");
-        kor3.add("예제3");
-        eng.add("example4");
-        kor1.add("예제4");
-        kor2.add("");
-        kor3.add("");
-        eng.add("example5");
-        kor1.add("예제5");
-        kor2.add("예제5");
-        kor3.add("");
-        eng.add("example6");
-        kor1.add("예제6");
-        kor2.add("예제6");
-        kor3.add("예제6");
+        for (Word w : word){
+            eng.add(w.getEnglish());
+            kor1.add(w.getKorean1());
+            kor2.add(w.getKorean2());
+            kor3.add(w.getKorean3());
+        }
+
 
         for (int i = 0; i < eng.size(); i++) { //이 구문 때문에, kor, eng다 크기 맞추기
             Word data = new Word();

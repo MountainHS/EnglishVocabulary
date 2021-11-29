@@ -61,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Intent intent;
+        /*순서
+        1. MainActivity에서 intent로 ListWord에 ListVersion을 보낸다. -> ListWord에서 List맞게 DB에 갖고온다.
+        2. ListWord에서 RecyclerAdaptor로 생성자를 통해, ListVersion을 보낸다.
+        3. RecyclerAdaptor에서 ListVersion을 StudyWord로 intent로 보낸다. -> StudyWord에서 intent로 받은 것을 통해 DB에서 갖고온다.
+        */
         if(view==drawerhandle){
             DrawerLayout drawer = findViewById(R.id.activity_main);
             if(!drawer.isDrawerOpen(Gravity.LEFT)){
@@ -68,30 +74,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else if(view==myword){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-
-            intent.putExtra("LIST_VERSION", 1);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 1);
             startActivity(intent);
         }
 
         else if(view==amgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 2);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 2);
             startActivity(intent);
         }
         else if(view==miamgi){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 3);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 3);
             startActivity(intent);
         }
         else if(view==odab){
-            Intent intent = new Intent(getApplicationContext(), ListWord.class);
-            intent.putExtra("LIST_VERSION", 4);
+            intent = new Intent(getApplicationContext(), ListWord.class);
+            intent.putExtra("ListVersion", 4);
             startActivity(intent);
         }
         else if(view==test){
-            Intent intent = new Intent(getApplicationContext(), TestSetting.class);
+            intent = new Intent(getApplicationContext(), TestSetting.class);
             startActivity(intent);
+        }
+
+        else if(view==game){
+            moveTaskToBack(true);
+            finishAndRemoveTask();
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 }
