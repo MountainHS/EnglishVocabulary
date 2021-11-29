@@ -2,10 +2,12 @@ package com.example.englishvocabulary;
 
 import static com.example.englishvocabulary.firestore.DatabaseControl.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -26,9 +28,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    // databaseControl test start
-    private static final String TAG = "MyActivity";
-    // end
+//    // databaseControl test start
+//    boolean fileReadPermission;
+//    boolean fileWritePermission;
+//    DatabaseControl dbC;
+//    private static final String TAG = "MyActivity";
+//    // end
     Button myword;
     Button amgi;
     Button miamgi;
@@ -42,23 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // databaseControl test start
-        File testFile = new File(Environment.DIRECTORY_DOWNLOADS + "/test.csv");
-        DatabaseControl dbC = new DatabaseControl();
-        dbC.storagePermissionCheck();
-        Log.d(TAG, "file test " + testFile.getAbsolutePath());
-        try{
-            FileWriter testWriter = new FileWriter(testFile);
-            testWriter.write("culture\t문화, 교양\n" +
-                    "experience\t경험, 경험하다");
-            Log.d(TAG, "write test");
-            testWriter.close();
-        } catch(FileNotFoundException e){
-            Log.d(TAG, "파일을 열 수 없음");
-        } catch(IOException e){
-            Log.d(TAG, "입출력 오류");
-        }
-        // end
+//        // databaseControl test start
+//        dbC = new DatabaseControl();
+//        dbC.storagePermissionCheck(this);
+//        // end
 
         myword = (Button) findViewById(R.id.button_myword);
         amgi = (Button) findViewById(R.id.button_amgi);
@@ -87,6 +79,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else if(view==myword){
+//            //databaseControl test start
+//            String parentDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+//            File testFile = new File(parentDir + "/test.txt");
+//            Log.d(TAG, "file test " + testFile.getAbsolutePath());
+//            try{
+//                if (!new File(parentDir).exists()){
+//                    Log.d(TAG, "!!!!!!!!!!!!!!!!!!!");
+//                }
+//                if (!testFile.exists()){
+//                    testFile.createNewFile();
+//                }
+//                FileWriter testWriter = new FileWriter(testFile);
+//                testWriter.write("culture\t문화, 교양\n" +
+//                        "experience\t경험, 경험하다");
+//                Log.d(TAG, "write test");
+//                testWriter.close();
+//            } catch(FileNotFoundException e){
+//                Log.d(TAG, "파일을 열 수 없음");
+//            } catch(IOException e){
+//                Log.d(TAG, "입출력 오류");
+//            }
+//            dbC.uploadVocabularyDataSet("testVoca", testFile.getAbsolutePath());
+//            //end
             Intent intent = new Intent(getApplicationContext(), ListWord.class);
 
             intent.putExtra("LIST_VERSION", 1);
@@ -113,4 +128,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == 200 && grantResults.length > 0) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                fileReadPermission = true;
+//            if (grantResults[1] == PackageManager.PERMISSION_GRANTED)
+//                fileWritePermission = true;
+//        }
+//    }
 }

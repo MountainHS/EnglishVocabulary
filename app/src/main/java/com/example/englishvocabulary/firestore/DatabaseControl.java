@@ -3,6 +3,8 @@ package com.example.englishvocabulary.firestore;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
@@ -44,9 +46,6 @@ public class DatabaseControl extends AppCompatActivity{
         public void OnSuccess(ArrayList<Word> fetchedWordList);
     }
 
-    // 이미 있는 단어가 있을때 구현해야함
-    //// 뜻이 다를 경우 기존 문서에 뜻 추가
-    //// 뜻까지 다 같은 경우 종료
     public void addWord(String collectionName, Word word){ //파이어베이스에 단어 추가
         Map<String, Object> newWord = new HashMap<>();
         newWord.put("english", word.getEnglish());
@@ -118,21 +117,31 @@ public class DatabaseControl extends AppCompatActivity{
         });
     }
 
-    public void storagePermissionCheck(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+    public void storagePermissionCheck(Context activity){
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             fileReadPermission = true;
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             fileWritePermission = true;
         }
 
         if (!fileReadPermission || !fileWritePermission) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+            ActivityCompat.requestPermissions((Activity) activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 200 && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                fileReadPermission = true;
+            if (grantResults[1] == PackageManager.PERMISSION_GRANTED)
+                fileWritePermission = true;
         }
     }
 
     public void uploadVocabularyDataSet(String collectionName, String filePath){
-        storagePermissionCheck();
         try{
             FileReader vocaDataSet = new FileReader(filePath);
             StringBuffer row = new StringBuffer();
@@ -140,28 +149,30 @@ public class DatabaseControl extends AppCompatActivity{
             String english;
             ArrayList<String> korean;
             int c;
-            int tabIndex = 0;
+            while (true) {
+                while ((c = vocaDataSet.read()) != '\n' && c != -1) {
+                    row.append(c);
+                }
 
-            while ((c = vocaDataSet.read()) != '\n'){
-                row.append(c);
+                if (c == -1){
+                    break;
+                }
+
+                String[] parsedData = new String(row).split("\t");
+                String [] koreanList = parsedData[1].split(",");
+                english = parsedData[0];
+                for (String kor : koreanList){
+                    kor = kor.trim();
+                }
+                korean = new ArrayList<>(Arrays.asList(koreanList));
+                Word newWord = new Word();
+                newWord.setKorenAll(korean);
+                newWord.setEnglish(english);
+                newWord.setisMen(true);
+                newWord.setisOdap(false);
+
+                addWord(collectionName, newWord);
             }
-
-//            while (1){
-//                int prevTabIndex = tabIndex;
-//                tabIndex = row.indexOf("\t", tabIndex);
-//                Map<String, String>
-//            }
-
-            String [] parsedData = new String(row).split("\t");
-            english = parsedData[0];
-            korean = new ArrayList<>(Arrays.asList(parsedData[1].split(",")));
-            Word newWord = new Word();
-            newWord.setKorenAll(korean);
-            newWord.setEnglish(english);
-            newWord.setisMen(true);
-            newWord.setisOdap(false);
-
-            addWord(collectionName, newWord);
         } catch(FileNotFoundException e){
             Log.d(TAG, "파일을 열 수 없음");
         } catch(IOException e){
