@@ -86,10 +86,10 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
             });
         }
 
-
-
         else {
-            databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+            databaseControl.queryOrder("EngVoca","english", true)
+                    .queryOrder("isMem", true)
+                    .update(new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;

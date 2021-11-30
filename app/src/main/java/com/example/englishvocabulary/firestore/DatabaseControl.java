@@ -37,8 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseControl extends AppCompatActivity{
-    public static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private static Query queryResult;
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Query queryResult;
     boolean fileReadPermission;
     boolean fileWritePermission;
 
@@ -70,7 +70,7 @@ public class DatabaseControl extends AppCompatActivity{
                 });
     }
 
-    public void queryOrder(String collectionName, String standard, boolean isAsc){
+    public DatabaseControl queryOrder(String collectionName, String standard, boolean isAsc){
         CollectionReference targetVoca = db.collection(collectionName);
 
         if (isAsc == true){
@@ -79,7 +79,17 @@ public class DatabaseControl extends AppCompatActivity{
         else {
             queryResult = targetVoca.orderBy(standard, Query.Direction.DESCENDING);
         }
-//        return queryResult;
+        return this;
+    }
+
+    public DatabaseControl queryOrder(String standard, boolean isAsc){
+        if (isAsc == true){
+            queryResult = queryResult.orderBy(standard, Query.Direction.ASCENDING);
+        }
+        else {
+            queryResult = queryResult.orderBy(standard, Query.Direction.DESCENDING);
+        }
+        return this;
     }
 
     public void update(String collectionName, OnGetDataListener listener){
@@ -145,7 +155,6 @@ public class DatabaseControl extends AppCompatActivity{
         try{
             FileReader vocaDataSet = new FileReader(filePath);
             StringBuffer row = new StringBuffer();
-//            String [] keyList = {"english", "korean"};
             String english;
             ArrayList<String> korean;
             int c;
