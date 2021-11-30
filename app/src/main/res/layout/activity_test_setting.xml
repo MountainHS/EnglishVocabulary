@@ -62,12 +62,13 @@
             android:layout_marginTop="10dp">
 
             <RadioGroup
+                android:id="@+id/radiogroup_set"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radiobutton_all"
+                    android:id="@+id/radiobutton_myword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -76,7 +77,7 @@
                     android:textSize="30dp" />
 
                 <RadioButton
-                    android:id="@+id/radiobutton_amgi"
+                    android:id="@+id/radiobutton_myword2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -85,7 +86,7 @@
                     android:textSize="30dp" />
 
                 <RadioButton
-                    android:id="@+id/radiobutton_miamgi"
+                    android:id="@+id/radiobutton_myword3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

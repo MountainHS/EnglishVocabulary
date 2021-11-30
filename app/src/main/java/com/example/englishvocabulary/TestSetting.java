@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.englishvocabulary.firestore.DatabaseControl;
@@ -15,7 +16,7 @@ import com.example.englishvocabulary.firestore.DatabaseControl;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TestSetting extends AppCompatActivity implements View.OnClickListener {
+public class TestSetting extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     DatabaseControl databaseControl;
     Button plus10;
     Button plus20;
@@ -24,6 +25,8 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     Button startTest;
     EditText inputManyWord;
     ArrayList<Word> word;
+
+    RadioGroup setRadio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +47,11 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         plusMax.setOnClickListener(this);
         startTest.setOnClickListener(this);
 
+        setRadio = findViewById(R.id.radiogroup_set);
+        setRadio.setOnCheckedChangeListener(this);
+
         //일단 바로 engVoca에 있는 단어 갖고오기
-        databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
-            @Override
-            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                word = fetchedWordList;
-            }
-        });
+
 
 
     }
@@ -112,6 +113,34 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
                 inputManyWord.setText(word.size() + "");
                 manyTestWord = word.size();
             }
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int check) {
+        if(check == R.id.radiobutton_myword){
+            databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                }
+            });
+        }
+        else if(check == R.id.radiobutton_myword2){
+            databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                }
+            });
+        }
+        else if(check == R.id.radiobutton_myword3){
+            databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                }
+            });
         }
     }
 }
