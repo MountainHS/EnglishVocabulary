@@ -86,7 +86,25 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
             });
         }
 
+        else if(ListVersion == 3){
+            databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    getData(); //데이터 IN
+                }
+            });
+        }
 
+        else if(ListVersion == 2){
+            databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener(){
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    getData(); //데이터 IN
+                }
+            });
+        }
 
         else {
             databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
@@ -143,6 +161,12 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 //파이어베이스에 단어 추가
                 if(ListVersion == 4) {
                     databaseControl.addWord("OdapVoca", data);
+                }
+                else if(ListVersion == 3){
+                    databaseControl.addWord("EngVoca3", data);
+                }
+                else if(ListVersion == 2){
+                    databaseControl.addWord("EngVoca2", data);
                 }
                 else{
                     databaseControl.addWord("EngVoca", data);

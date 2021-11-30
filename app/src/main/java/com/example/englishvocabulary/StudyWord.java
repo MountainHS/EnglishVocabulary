@@ -51,9 +51,32 @@ public class StudyWord extends AppCompatActivity {
         intent = getIntent();
 
         int ListVersion = intent.getIntExtra("ListVersion", 1);
+        Log.v("test", "ListVersion : " + ListVersion);
 
         if(ListVersion == 4) {
             databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    startMyAdaptor();
+
+                }
+            });
+        }
+
+        else if(ListVersion == 3) {
+            databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
+                @Override
+                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                    word = fetchedWordList;
+                    startMyAdaptor();
+
+                }
+            });
+        }
+
+        else if(ListVersion == 2) {
+            databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
                 @Override
                 public void OnSuccess(ArrayList<Word> fetchedWordList) {
                     word = fetchedWordList;

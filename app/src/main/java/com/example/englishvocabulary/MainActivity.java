@@ -41,6 +41,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button game;
     Button drawerhandle;
     Button close_drawer;
+    DatabaseControl databaseControl;
+
+    TextView mywordManyword;
+    TextView myword2Manyword;
+    TextView myword3Manyword;
+
+    //단어 개수 출력용 list
+    ArrayList<Word> list1;
+    ArrayList<Word> list2;
+    ArrayList<Word> list3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerhandle = (Button) findViewById(R.id.button_openDrawerWithMain);
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
 
+        mywordManyword = findViewById(R.id.textview_mywordManyWord);
+        myword2Manyword = findViewById(R.id.textview_myword2ManyWord);
+        myword3Manyword = findViewById(R.id.textview_myword3ManyWord);
+
         myword.setOnClickListener(this);
         myword2.setOnClickListener(this);
         myword3.setOnClickListener(this);
@@ -71,6 +86,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test.setOnClickListener(this);
         game.setOnClickListener(this);
         drawerhandle.setOnClickListener(this);
+
+        //단어 개수 출력용
+
+        /*
+        databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+            @Override
+            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                list1 = fetchedWordList;
+                mywordManyword.setText(list1.size()+"");
+            }
+        });
+        databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
+            @Override
+            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                list2 = fetchedWordList;
+                myword2Manyword.setText(list2.size()+"");
+            }
+        });
+        databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
+            @Override
+            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                list3 = fetchedWordList;
+                myword3Manyword.setText(list3.size()+"");
+            }
+        });
+*/
+
     }
 
     @Override
