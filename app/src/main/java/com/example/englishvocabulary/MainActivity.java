@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    Button amgi;
 //    Button miamgi;
     LinearLayout myword;
-    LinearLayout amgi;
-    LinearLayout miamgi;
+    LinearLayout myword2;
+    LinearLayout myword3;
 
     Button odab;
     Button test;
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        amgi = (Button) findViewById(R.id.button_amgi);
 //        miamgi = (Button) findViewById(R.id.button_miamgi);
         myword = findViewById(R.id.myword);
-        amgi = findViewById(R.id.amgi);
-        miamgi = findViewById(R.id.miamgi);
+        myword2 = findViewById(R.id.myword2);
+        myword3 = findViewById(R.id.myword3);
 
         odab = (Button) findViewById(R.id.button_odap);
         test = (Button) findViewById(R.id.button_test);
@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
 
         myword.setOnClickListener(this);
-        amgi.setOnClickListener(this);
-        miamgi.setOnClickListener(this);
+        myword2.setOnClickListener(this);
+        myword3.setOnClickListener(this);
         odab.setOnClickListener(this);
         test.setOnClickListener(this);
         game.setOnClickListener(this);
@@ -93,12 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-        else if(view==amgi){
+        else if(view==myword2){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 2);
             startActivity(intent);
         }
-        else if(view==miamgi){
+        else if(view==myword3){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 3);
             startActivity(intent);

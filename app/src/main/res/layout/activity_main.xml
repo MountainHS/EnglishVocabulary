@@ -85,7 +85,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
             <LinearLayout
-                android:id="@+id/amgi"
+                android:id="@+id/myword2"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"/>
             <LinearLayout
-                android:id="@+id/miamgi"
+                android:id="@+id/myword3"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                 android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/light_gray"
                 android:gravity="left|center_vertical"
-                android:text="Game"
+                android:text="종료"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
 
