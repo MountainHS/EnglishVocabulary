@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button game;
     Button drawerhandle;
     Button close_drawer;
+    Button goNaver;
     DatabaseControl databaseControl;
 
     TextView mywordManyword;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         game = (Button) findViewById(R.id.button_game);
         drawerhandle = (Button) findViewById(R.id.button_openDrawerWithMain);
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
+        goNaver = (Button)findViewById(R.id.button_goNaver);
 
         mywordManyword = findViewById(R.id.textview_mywordManyWord);
         myword2Manyword = findViewById(R.id.textview_myword2ManyWord);
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         odab.setOnClickListener(this);
         test.setOnClickListener(this);
         game.setOnClickListener(this);
+        goNaver.setOnClickListener(this);
         drawerhandle.setOnClickListener(this);
 
         //단어 개수 출력용
@@ -149,6 +153,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(view==odab){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 4);
+            startActivity(intent);
+        }
+        else if(view==goNaver){
+            intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://endic.naver.com/"));
             startActivity(intent);
         }
         else if(view==test){
