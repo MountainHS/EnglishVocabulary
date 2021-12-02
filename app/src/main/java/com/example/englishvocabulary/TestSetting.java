@@ -1,10 +1,12 @@
 package com.example.englishvocabulary;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,8 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     EditText inputManyWord;
     ArrayList<Word> word;
 
+    Button drawerhandle;
+
     RadioGroup setRadio;
 
     @Override
@@ -40,6 +44,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         plusMax = findViewById(R.id.button_plusMAXtest);
         startTest = findViewById(R.id.button_startTest);
         inputManyWord = findViewById(R.id.edittext_numberoftest);
+        drawerhandle = findViewById(R.id.button_openDrawerWithTestSetting);
 
         plus10.setOnClickListener(this);
         plus20.setOnClickListener(this);
@@ -49,7 +54,17 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
 
         setRadio = findViewById(R.id.radiogroup_set);
         setRadio.setOnCheckedChangeListener(this);
-
+        drawerhandle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view == drawerhandle) {
+                    DrawerLayout drawer = findViewById(R.id.activity_WordList);
+                    if (!drawer.isDrawerOpen(Gravity.LEFT)) {
+                        drawer.openDrawer(Gravity.LEFT);
+                    }
+                }
+            }
+        });
         //일단 바로 engVoca에 있는 단어 갖고오기
 
 

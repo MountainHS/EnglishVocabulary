@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        databaseControl = new DatabaseControl();
 //        // databaseControl test start
 //        dbC = new DatabaseControl();
 //        dbC.storagePermissionCheck(this);
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //단어 개수 출력용
 
-        /*
+
         databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
             @Override
             public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myword3Manyword.setText(list3.size()+"");
             }
         });
-*/
+
 
     }
 
