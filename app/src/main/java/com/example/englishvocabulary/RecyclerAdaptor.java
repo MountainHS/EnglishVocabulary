@@ -57,12 +57,15 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         return eng_kor_set.size();
     }
 
+    void init_Item(){
+        eng_kor_set.clear();
+    }
+
     void addItem(Word data) {
         // 외부에서 item을 추가시킬 함수입니다.
         eng_kor_set.add(data);
 
     }
-
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
@@ -90,7 +93,6 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         void onBind(Word data) {
             this.data = data;
 
-
             eng.setText(data.getEnglish());
             kor1.setText(data.getKorean1());
             kor2.setText(data.getKorean2());
@@ -101,6 +103,8 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
             kor2.setOnClickListener(this);
             kor3.setOnClickListener(this);
             linearLayout.setOnClickListener(this);
+
+
 
 
         }

@@ -66,6 +66,17 @@
                 android:text="정렬 기준"
                 android:textSize="16dp"
                 android:backgroundTint="@color/light_gray"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_jungOk"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="오름차순 여부"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_marginLeft="10dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
