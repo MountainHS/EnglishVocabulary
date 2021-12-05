@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,10 +33,10 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
     ArrayList<String> kor2;
     ArrayList<String> kor3;
 
-    Button drawerOnoffButton;
+    ImageButton drawerOnoffButton;
     private RecyclerAdaptor adapter;
 
-    Button addWordButton;
+    ImageButton addWordButton;
     Dialog addWordDialog;
     DatabaseControl databaseControl;
 
@@ -399,12 +400,9 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        if (view == drawerOnoffButton) {
-            DrawerLayout drawer = findViewById(R.id.activity_WordList);
-            if (!drawer.isDrawerOpen(Gravity.LEFT)) {
-                drawer.openDrawer(Gravity.LEFT);
-            }
-        }
+        Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(gomainIntent);
 
     }
 }

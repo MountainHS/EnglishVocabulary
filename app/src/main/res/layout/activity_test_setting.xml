@@ -19,12 +19,14 @@
             android:gravity="center|left"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_openDrawerWithTestSetting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
+                android:layout_gravity="center"
+                android:src="@drawable/homexml"
                 android:backgroundTint="@color/light_blue" />
 
             <TextView
@@ -93,7 +95,8 @@
                         android:layout_height="match_parent"
                         android:text="전체"
                         android:textColor="@color/black"
-                        android:textSize="30dp"/>
+                        android:textSize="25dp"
+                        />
                     <RadioButton
                         android:id="@+id/radiobutton_myword2"
                         android:layout_width="0dp"
@@ -101,7 +104,7 @@
                         android:layout_height="match_parent"
                         android:text="암기"
                         android:textColor="@color/black"
-                        android:textSize="30dp" />
+                        android:textSize="25dp" />
                     <RadioButton
                         android:id="@+id/radiobutton_myword3"
                         android:layout_width="0dp"
@@ -109,7 +112,7 @@
                         android:layout_height="match_parent"
                         android:text="미암기"
                         android:textColor="@color/black"
-                        android:textSize="30dp" />
+                        android:textSize="25dp" />
 
                 </RadioGroup>
 
@@ -199,7 +202,7 @@
                         android:layout_marginRight="5dp"
                         android:text="MAX"
                         android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textSize="15dp" />
 
                 </LinearLayout>
             </LinearLayout>

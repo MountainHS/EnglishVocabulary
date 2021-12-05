@@ -10,9 +10,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class StudyWord extends AppCompatActivity {
 
     Intent intent;
     DatabaseControl databaseControl;
+    ImageButton gomain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,16 @@ public class StudyWord extends AppCompatActivity {
         kor3 = new ArrayList<>();
 
         intent = getIntent();
+
+        gomain = findViewById(R.id.button_openDrawerWithWordStudy);
+        gomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(gomainIntent);
+            }
+        });
 
         int ListVersion = intent.getIntExtra("ListVersion", 1);
         Log.v("test", "ListVersion : " + ListVersion);

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button odab;
     Button test;
     Button game;
-    Button drawerhandle;
+    ImageButton drawerhandle;
     Button close_drawer;
     Button goNaver;
     DatabaseControl databaseControl;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         odab = (Button) findViewById(R.id.button_odap);
         test = (Button) findViewById(R.id.button_test);
         game = (Button) findViewById(R.id.button_game);
-        drawerhandle = (Button) findViewById(R.id.button_openDrawerWithMain);
+        drawerhandle = (ImageButton) findViewById(R.id.button_openDrawerWithMain);
         close_drawer = (Button)findViewById(R.id.button_close_drawer);
         goNaver = (Button)findViewById(R.id.button_goNaver);
 
@@ -129,10 +130,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         3. RecyclerAdaptor에서 ListVersion을 StudyWord로 intent로 보낸다. -> StudyWord에서 intent로 받은 것을 통해 DB에서 갖고온다.
         */
         if(view==drawerhandle){
+            /*
             DrawerLayout drawer = findViewById(R.id.activity_main);
             if(!drawer.isDrawerOpen(Gravity.LEFT)){
                 drawer.openDrawer(Gravity.LEFT);
-            }
+            }*/
+            Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+            gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(gomainIntent);
         }
         else if(view==myword){
             intent = new Intent(getApplicationContext(), ListWord.class);

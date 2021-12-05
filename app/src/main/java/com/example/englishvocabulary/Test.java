@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
     Button checkAnswer;
     Button jumpAnswer;
     Button endTest;
+    ImageButton gomain;
 
     Dialog addWrongWordDialog;
     ArrayList<Word> testWord;
@@ -85,6 +87,15 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
         problemKoren2.setText(testWord.get(i-1).getKorean2());
         problemKoren3.setText(testWord.get(i-1).getKorean3());
 
+        gomain = findViewById(R.id.button_openDrawerWithTest);
+        gomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(gomainIntent);
+            }
+        });
 
     }
 

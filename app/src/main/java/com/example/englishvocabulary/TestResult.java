@@ -47,6 +47,7 @@ public class TestResult extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(gomainIntent);
             }
         });

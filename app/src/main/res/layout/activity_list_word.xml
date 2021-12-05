@@ -21,13 +21,17 @@
             android:gravity="center|left"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_openDrawerWithWordList"
+                android:src="@drawable/homexml"
                 android:backgroundTint="@color/light_blue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="1" />
+                android:paddingHorizontal="10dp"
+                android:layout_weight="1.4"
+                android:layout_gravity="center"
+                />
 
             <TextView
                 android:layout_width="0dp"
@@ -39,15 +43,13 @@
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_addword"
+                android:src="@drawable/addxml"
                 android:backgroundTint="@color/light_blue"
-                android:text="A"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight = "1"
+                android:layout_weight = "1.4"
                 android:layout_marginRight="5dp"/>
 
         </LinearLayout>
@@ -77,21 +79,7 @@
                 android:textSize="14dp"
                 android:layout_marginLeft="10dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_blue"
-                    android:text="암기"
-                    android:textSize="16dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="15dp"
-                    />
 
-            </LinearLayout>
 
         </LinearLayout>
 

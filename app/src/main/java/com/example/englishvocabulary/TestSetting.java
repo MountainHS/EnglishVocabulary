@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     EditText inputManyWord;
     ArrayList<Word> word;
 
-    Button drawerhandle;
+    ImageButton drawerhandle;
 
     RadioGroup setRadio;
 
@@ -57,12 +58,9 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         drawerhandle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view == drawerhandle) {
-                    DrawerLayout drawer = findViewById(R.id.activity_WordList);
-                    if (!drawer.isDrawerOpen(Gravity.LEFT)) {
-                        drawer.openDrawer(Gravity.LEFT);
-                    }
-                }
+                Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(gomainIntent);
             }
         });
         //일단 바로 engVoca에 있는 단어 갖고오기
@@ -95,11 +93,11 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         else if(view == startTest){
             Log.v("test","startTest 클릭");
             many = inputManyWord.getText().toString();
-            manyTestWord = Integer.parseInt(many);
             if(many.equals("") || many.equals(" ")){
                 Toast.makeText(getApplicationContext(), "문제 수를 입력하세요", Toast.LENGTH_SHORT).show();
             }
             else {
+                manyTestWord = Integer.parseInt(many);
                 if(manyTestWord <= word.size()) {
                     manyTestWord = Integer.parseInt(many);
                     Collections.shuffle(word);
