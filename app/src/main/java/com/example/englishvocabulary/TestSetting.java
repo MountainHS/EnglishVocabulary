@@ -73,6 +73,12 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         String many;
         int manyTestWord = 0;
+
+        if(setRadio.getCheckedRadioButtonId() == -1){   //아무것도 선택되지 않은 경우 -1 return
+            Toast.makeText(getApplicationContext(), "단어장을 선택해 주세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(view == plus10){
             inputManyWord.setText("");
             inputManyWord.setText("10");
@@ -92,6 +98,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
         }
         else if(view == startTest){
             Log.v("test","startTest 클릭");
+
             many = inputManyWord.getText().toString();
             if(many.equals("") || many.equals(" ")){
                 Toast.makeText(getApplicationContext(), "문제 수를 입력하세요", Toast.LENGTH_SHORT).show();
