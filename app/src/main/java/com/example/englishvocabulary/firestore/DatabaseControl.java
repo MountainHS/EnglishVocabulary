@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.englishvocabulary.BuildConfig;
 import com.example.englishvocabulary.Word;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,10 +39,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseControl extends AppCompatActivity{
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db;
     private Query queryResult;
     boolean fileReadPermission;
     boolean fileWritePermission;
+
+    public DatabaseControl(){
+        db = FirebaseFirestore.getInstance();
+//        db.useEmulator("10.0.2.2", 8080);
+//
+//        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+//                .setPersistenceEnabled(false)
+//                .build();
+//        db.setFirestoreSettings(settings);
+    }
 
     public interface OnGetDataListener{
         public void OnSuccess(ArrayList<Word> fetchedWordList);
@@ -154,33 +166,51 @@ public class DatabaseControl extends AppCompatActivity{
     public void uploadVocabularyDataSet(String collectionName, String filePath){
         try{
             FileReader vocaDataSet = new FileReader(filePath);
-            StringBuffer row = new StringBuffer();
+            StringBuffer row;
             String english;
             ArrayList<String> korean;
-            int c;
+            int c = 0;
             while (true) {
-                while ((c = vocaDataSet.read()) != '\n' && c != -1) {
-                    row.append(c);
-                }
-
                 if (c == -1){
                     break;
                 }
 
-                String[] parsedData = new String(row).split("\t");
-                String [] koreanList = parsedData[1].split(",");
-                english = parsedData[0];
-                for (String kor : koreanList){
-                    kor = kor.trim();
+                row = new StringBuffer();
+                while ((c = vocaDataSet.read()) != '\n' && c != -1) {
+                    row.append((char) c);
                 }
-                korean = new ArrayList<>(Arrays.asList(koreanList));
-                Word newWord = new Word();
-                newWord.setKorenAll(korean);
-                newWord.setEnglish(english);
-                newWord.setisMen(true);
-                newWord.setisOdap(false);
 
-                addWord(collectionName, newWord);
+                try {
+                    String[] parsedData1 = new String(row).split("[.]");
+                    String[] parsedData2 = parsedData1[1].split("\t");
+                    String[] koreanList = new String[3];
+                    String[] parsedKoreanList = parsedData2[1].split(",");
+                    english = parsedData2[0].trim();
+
+                    int i;
+                    for (i = 0; i < 3; i++){
+                        koreanList[i] = "";
+                    }
+
+                    i = 0;
+                    for (String kor : parsedKoreanList){
+                        koreanList[i] = kor.trim();
+                        i++;
+                    }
+
+                    korean = new ArrayList<>(Arrays.asList(koreanList));
+                    Word newWord = new Word();
+                    newWord.setKorenAll(korean);
+                    newWord.setEnglish(english);
+                    newWord.setisMen(true);
+                    newWord.setisOdap(false);
+
+                    addWord(collectionName, newWord);
+                }
+                catch(ArrayIndexOutOfBoundsException e){
+                    Log.d("!!!!!", row.toString());
+                }
+
             }
         } catch(FileNotFoundException e){
             Log.d(TAG, "파일을 열 수 없음");
