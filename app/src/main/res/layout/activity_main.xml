@@ -51,8 +51,7 @@
             android:orientation="horizontal"
             android:weightSum="13"
             android:gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginTop="40dp">
 
             <LinearLayout
                 android:id="@+id/myword"
@@ -165,55 +164,63 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/button_odap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/light_gray"
                 android:gravity="left|center_vertical"
                 android:text="오답노트"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/button_goNaver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/light_gray"
                 android:gravity="left|center_vertical"
                 android:text="영단어 검색"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/button_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/light_gray"
                 android:gravity="left|center_vertical"
                 android:text="Test"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
 
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/button_game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/light_gray"
                 android:gravity="left|center_vertical"
                 android:text="종료"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
     <include
