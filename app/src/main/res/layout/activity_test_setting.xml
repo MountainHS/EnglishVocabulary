@@ -93,26 +93,32 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="match_parent"
-                        android:text="전체"
+                        android:text="내
+                        단어장"
+                        android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         />
                     <RadioButton
                         android:id="@+id/radiobutton_myword2"
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="match_parent"
-                        android:text="암기"
+                        android:text="TOEIC
+                        모음"
+                        android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="25dp" />
+                        android:textSize="20dp" />
                     <RadioButton
                         android:id="@+id/radiobutton_myword3"
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="match_parent"
-                        android:text="미암기"
+                        android:text="기초
+                        단어"
+                        android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="25dp" />
+                        android:textSize="20dp" />
 
                 </RadioGroup>
 

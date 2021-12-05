@@ -28,6 +28,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     ArrayList<Word> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
     Context context; // 어뎁터 안에서 Intent 할 때
     int ListVersion;
+    public int sortVersion;
 
     RecyclerAdaptor(){}
 
@@ -35,6 +36,10 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     RecyclerAdaptor(int ListVersion) {
         this.ListVersion = ListVersion;
     }
+
+    RecyclerAdaptor(int ListVersion, int sortVersion) {
+        this.ListVersion = ListVersion;
+        this.sortVersion = sortVersion;}
 
     @NonNull
     @Override
@@ -119,6 +124,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
+                    intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
                     break;
 
@@ -126,6 +132,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
+                    intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
                     break;
 
@@ -133,6 +140,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
+                    intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
                     break;
 
@@ -140,6 +148,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
+                    intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
                     break;
 
@@ -147,6 +156,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent = new Intent(context.getApplicationContext(), StudyWord.class);
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
+                    intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
                     break;
             }

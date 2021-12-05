@@ -65,50 +65,119 @@ public class StudyWord extends AppCompatActivity {
         });
 
         int ListVersion = intent.getIntExtra("ListVersion", 1);
+        int sortVersion = intent.getIntExtra("sortVersion", 1);
         Log.v("test", "ListVersion : " + ListVersion);
 
         if(ListVersion == 4) {
-            databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
-                @Override
-                public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                    word = fetchedWordList;
-                    startMyAdaptor();
+            if(sortVersion == 0) {
+                databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
+                    @Override
+                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                        word = fetchedWordList;
+                        startMyAdaptor();
 
-                }
-            });
+                    }
+                });
+            }
+            else {
+                String check = "english";
+                if (sortVersion == 1)
+                    check = "english";
+                //                    else if(sortVersion == 2)
+                //                        check = "korean";
+                databaseControl.queryOrder("OdapVoca", check, true)
+                        .update(new DatabaseControl.OnGetDataListener() {
+                            @Override
+                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                word = fetchedWordList;
+                                startMyAdaptor();
+                            }
+                        });
+            }
         }
 
         else if(ListVersion == 3) {
-            databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
-                @Override
-                public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                    word = fetchedWordList;
-                    startMyAdaptor();
+            if(sortVersion == 0) {
+                databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
+                    @Override
+                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                        word = fetchedWordList;
+                        startMyAdaptor();
 
-                }
-            });
+                    }
+                });
+            }
+            else {
+                String check = "english";
+                if (sortVersion == 1)
+                    check = "english";
+                //                    else if(sortVersion == 2)
+                //                        check = "korean";
+                databaseControl.queryOrder("EngVoca3", check, true)
+                        .update(new DatabaseControl.OnGetDataListener() {
+                            @Override
+                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                word = fetchedWordList;
+                                startMyAdaptor();
+                            }
+                        });
+            }
         }
 
         else if(ListVersion == 2) {
-            databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
-                @Override
-                public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                    word = fetchedWordList;
-                    startMyAdaptor();
+            if(sortVersion == 0) {
+                databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
+                    @Override
+                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                        word = fetchedWordList;
+                        startMyAdaptor();
 
-                }
-            });
+                    }
+                });
+            }
+            else {
+                String check = "english";
+                if (sortVersion == 1)
+                    check = "english";
+                //                    else if(sortVersion == 2)
+                //                        check = "korean";
+                databaseControl.queryOrder("EngVOca2", check, true)
+                        .update(new DatabaseControl.OnGetDataListener() {
+                            @Override
+                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                word = fetchedWordList;
+                                startMyAdaptor();
+                            }
+                        });
+            }
         }
 
         else{
-            databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
-                @Override
-                public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                    word = fetchedWordList;
-                    startMyAdaptor();
+            if(sortVersion == 0) {
+                databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+                    @Override
+                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                        word = fetchedWordList;
+                        startMyAdaptor();
 
-                }
-            });
+                    }
+                });
+            }
+            else {
+                String check = "english";
+                if (sortVersion == 1)
+                    check = "english";
+                //                    else if(sortVersion == 2)
+                //                        check = "korean";
+                databaseControl.queryOrder("EngVoca", check, true)
+                        .update(new DatabaseControl.OnGetDataListener() {
+                            @Override
+                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                word = fetchedWordList;
+                                startMyAdaptor();
+                            }
+                        });
+            }
         }
 
     }

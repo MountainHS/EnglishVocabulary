@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +52,9 @@
             android:orientation="horizontal"
             android:weightSum="13"
             android:gravity="center"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:measureWithLargestChild="false">
 
             <LinearLayout
                 android:id="@+id/myword"
@@ -66,7 +69,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="내단어"
+                    android:text="내
+                    단어장"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     android:layout_marginBottom="5dp"
@@ -79,7 +84,7 @@
                     android:background="@color/white"
                     android:clickable="false"
                     android:gravity="center"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -101,9 +106,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="암기"
+                    android:text="TOIEC
+                    모음"
                     android:textColor="@color/black"
                     android:textSize="17dp"
+                    android:gravity="center"
                     android:layout_marginBottom="5dp"
                     android:clickable="false"/>
 
@@ -111,7 +118,7 @@
                     android:id="@+id/textview_myword2ManyWord"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:background="@color/white"
@@ -136,7 +143,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="미암기"
+                    android:text="기초
+                    단어"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     android:layout_marginBottom="5dp"
@@ -146,7 +155,7 @@
                     android:id="@+id/textview_myword3ManyWord"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:background="@color/white"
