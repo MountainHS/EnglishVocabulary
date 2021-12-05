@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -142,6 +145,11 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void makeDialog() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        Window window = addWrongWordDialog.getWindow();
+        window.setLayout((int) (size.x * 0.9), (int) (size.y * 0.7));
         addWrongWordDialog.show();
         // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
 
