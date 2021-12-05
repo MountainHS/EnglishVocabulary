@@ -136,7 +136,6 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                         //                        check = "korean";
                         Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                         databaseControl.queryOrder("OdapVoca", check, jungOk)
-                                .queryOrder("isMem", true)
                                 .update(new DatabaseControl.OnGetDataListener() {
                                     @Override
                                     public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -166,7 +165,6 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                         //                        check = "korean";
                         Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                         databaseControl.queryOrder("EngVoca3", check, jungOk)
-                                .queryOrder("isMem", true)
                                 .update(new DatabaseControl.OnGetDataListener() {
                                     @Override
                                     public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -196,7 +194,6 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                         //                        check = "korean";
                         Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                         databaseControl.queryOrder("EngVoca2", check, jungOk)
-                                .queryOrder("isMem", true)
                                 .update(new DatabaseControl.OnGetDataListener() {
                                     @Override
                                     public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -226,7 +223,6 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                         //                        check = "korean";
                         Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                         databaseControl.queryOrder("EngVoca", check, jungOk)
-                                .queryOrder("isMem", true)
                                 .update(new DatabaseControl.OnGetDataListener() {
                                     @Override
                                     public void OnSuccess(ArrayList<Word> fetchedWordList) {

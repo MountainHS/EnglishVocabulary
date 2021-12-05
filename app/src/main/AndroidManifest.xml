@@ -21,10 +21,12 @@
             android:exported="true" />
         <activity
             android:name=".Test"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true"/>
         <activity
             android:name=".TestSetting"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true"/>
         <activity
             android:name=".StudyWord_show"
             android:exported="true" />
