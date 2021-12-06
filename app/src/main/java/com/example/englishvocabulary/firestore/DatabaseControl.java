@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,7 +24,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,6 +39,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DatabaseControl extends AppCompatActivity{
@@ -48,12 +52,32 @@ public class DatabaseControl extends AppCompatActivity{
 
     public DatabaseControl(){
         db = FirebaseFirestore.getInstance();
+        // firebase emulator suite test
 //        db.useEmulator("10.0.2.2", 8080);
 //
 //        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
 //                .setPersistenceEnabled(false)
 //                .build();
 //        db.setFirestoreSettings(settings);
+        // realtime update test
+//        db.collection("EngVoca")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value,
+//                                        @Nullable FirebaseFirestoreException e) {
+//                        if (e != null) {
+//                            Log.d("!!!!!", "Listen failed.", e);
+//                            return;
+//                        }
+//
+//                        List<String> test = new ArrayList<>();
+//                        for (QueryDocumentSnapshot doc : value) {
+//                            if (doc.get("english") != null) {
+//                                Log.d("!!!!!", (String) doc.get("english"));
+//                            }
+//                        }
+//                    }
+//                });
     }
 
     public interface OnGetDataListener{

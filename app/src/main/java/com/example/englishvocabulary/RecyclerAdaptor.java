@@ -25,6 +25,7 @@ import com.example.englishvocabulary.firestore.DatabaseControl;
 
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemViewHolder> {
     //extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
+    DatabaseControl databaseControl;
     ArrayList<Word> eng_kor_set = new ArrayList<>(); //영어-한글-한글-한글-위치 set
     Context context; // 어뎁터 안에서 Intent 할 때
     int ListVersion;
@@ -38,6 +39,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     }
 
     RecyclerAdaptor(int ListVersion, int sortVersion) {
+        databaseControl = new DatabaseControl();
         this.ListVersion = ListVersion;
         this.sortVersion = sortVersion;}
 
@@ -47,7 +49,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         //layoutInflater를 이용해 list_word_show.xml를 inflate 시킴 (반복적 보여줄 거)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_word_show, parent, false);
         context = parent.getContext();
-        return new ItemViewHolder(view);
+        return new ItemViewHolder(view, ListVersion);
 
     }
 
@@ -75,7 +77,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+        private int listVersion;
         private TextView eng;
         private TextView kor1;
         private TextView kor2;
@@ -88,9 +90,9 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         private LinearLayout linearLayout;
 
 
-        ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView, int listVersion) {
             super(itemView);
-
+            this.listVersion = listVersion;
             eng = itemView.findViewById(R.id.textview_english_word_list);
             kor1 = itemView.findViewById(R.id.textview_korean_word_list1);
             kor2 = itemView.findViewById(R.id.textview_korean_word_list2);
@@ -117,6 +119,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
             kor2.setOnClickListener(this);
             kor3.setOnClickListener(this);
             linearLayout.setOnClickListener(this);
+            isMem.setOnClickListener(this);
         }
 
         @Override
@@ -163,6 +166,30 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
                     context.startActivity(intent);
+                    break;
+
+                case R.id.checkbox_isMemListWord:
+                    this.data.setIsMem(isMem.isChecked());
+
+                    String collectionName = new String();
+                    switch (listVersion){
+                        case 1:
+                            collectionName = new String("EngVoca");
+                            break;
+
+                        case 2:
+                            collectionName = new String("EngVoca2");
+                            break;
+
+                        case 3:
+                            collectionName = new String("EngVoca3");
+                            break;
+
+                        case 4:
+                            collectionName = new String("OdapVoca");
+                            break;
+                    }
+                    databaseControl.addWord(collectionName, this.data);
                     break;
             }
         }
