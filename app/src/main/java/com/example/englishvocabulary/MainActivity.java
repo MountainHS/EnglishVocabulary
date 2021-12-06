@@ -93,15 +93,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    "15. system \t체계, 조직, 제도\n" +
 //                    "16. triumph \t승리\n" +
 //                    "17. respect \t존경, 존경하다\n" +
-//                    "18. communication \t의사소통, 전달\n" +
+//                    "18. communication\t의사소통, 전달\n" +
 //                    "19. foundation \t기초, 근거, 설립\n" +
-//                    "20. glory \t영광");
+//                    "20. glory \t영광\n" +
+//                    "21. situation \t위치, 상황\n" +
+//                    "22. competition \t경쟁\n" +
+//                    "23. prairie \t대초원\n" +
+//                    "24. effort \t노력\n" +
+//                    "25. section \t부분, 구역\n" +
+//                    "26. rein \t고삐\n" +
+//                    "27. solution \t해결, 용해\n" +
+//                    "28. hono(u)r \t명예, 경의, 존경하다\n" +
+//                    "29. unity \t통일, 일치\n" +
+//                    "30. population \t인구\n" +
+//                    "31. direction \t방향, 지시\n" +
+//                    "32. dialogue \t대화\n" +
+//                    "33. republic \t공화국\n" +
+//                    "34. method \t방법\n" +
+//                    "35. increase \t증가, 증가하다\n" +
+//                    "36. decrease \t감소, 감소하다\n" +
+//                    "37. amount \t총액, 양, (총계) -이 되다\n" +
+//                    "38. ancestor \t조상, 선조\n" +
+//                    "39. voyage \t항해\n" +
+//                    "40. sculpture \t조각(물)");
 //            testWriteFile.close();
 //        }
 //        catch (IOException e){
 //            Log.d("!!!!!","test.txt IOE");
 //        }
-//        dbC.uploadVocabularyDataSet("testVoca", testFile.getAbsolutePath());
+//        databaseControl.uploadVocabularyDataSet("EngVoca", testFile.getAbsolutePath());
 //        // end
 
 //        myword = (Button) findViewById(R.id.button_myword);
