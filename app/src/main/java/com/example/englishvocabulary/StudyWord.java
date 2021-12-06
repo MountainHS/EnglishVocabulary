@@ -66,6 +66,7 @@ public class StudyWord extends AppCompatActivity {
 
         int ListVersion = intent.getIntExtra("ListVersion", 1);
         int sortVersion = intent.getIntExtra("sortVersion", 1);
+        boolean jungOk = intent.getBooleanExtra("jungOk", true);
         Log.v("test", "ListVersion : " + ListVersion);
 
         if(ListVersion == 4) {
@@ -85,7 +86,7 @@ public class StudyWord extends AppCompatActivity {
                     check = "english";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
-                databaseControl.queryOrder("OdapVoca", check, true)
+                databaseControl.queryOrder("OdapVoca", check, jungOk)
                         .update(new DatabaseControl.OnGetDataListener() {
                             @Override
                             public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -113,7 +114,7 @@ public class StudyWord extends AppCompatActivity {
                     check = "english";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
-                databaseControl.queryOrder("EngVoca3", check, true)
+                databaseControl.queryOrder("EngVoca3", check, jungOk)
                         .update(new DatabaseControl.OnGetDataListener() {
                             @Override
                             public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -141,7 +142,7 @@ public class StudyWord extends AppCompatActivity {
                     check = "english";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
-                databaseControl.queryOrder("EngVOca2", check, true)
+                databaseControl.queryOrder("EngVOca2", check, jungOk)
                         .update(new DatabaseControl.OnGetDataListener() {
                             @Override
                             public void OnSuccess(ArrayList<Word> fetchedWordList) {
@@ -169,7 +170,7 @@ public class StudyWord extends AppCompatActivity {
                     check = "english";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
-                databaseControl.queryOrder("EngVoca", check, true)
+                databaseControl.queryOrder("EngVoca", check, jungOk)
                         .update(new DatabaseControl.OnGetDataListener() {
                             @Override
                             public void OnSuccess(ArrayList<Word> fetchedWordList) {

@@ -30,6 +30,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
     Context context; // 어뎁터 안에서 Intent 할 때
     int ListVersion;
     public int sortVersion;
+    public boolean jungOk;
 
     RecyclerAdaptor(){}
 
@@ -42,6 +43,11 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         databaseControl = new DatabaseControl();
         this.ListVersion = ListVersion;
         this.sortVersion = sortVersion;}
+
+    RecyclerAdaptor(int ListVersion, int sortVersion, boolean jungOk) {
+        this.ListVersion = ListVersion;
+        this.sortVersion = sortVersion;
+        this.jungOk = jungOk;}
 
     @NonNull
     @Override
@@ -133,6 +139,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
+                    intent.putExtra("jungOk", jungOk);
                     context.startActivity(intent);
                     break;
 
@@ -141,6 +148,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
+                    intent.putExtra("jungOk", jungOk);
                     context.startActivity(intent);
                     break;
 
@@ -149,6 +157,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
+                    intent.putExtra("jungOk", jungOk);
                     context.startActivity(intent);
                     break;
 
@@ -157,6 +166,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
+                    intent.putExtra("jungOk", jungOk);
                     context.startActivity(intent);
                     break;
 
@@ -165,6 +175,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
                     intent.putExtra("when", data.getEnglish());
                     intent.putExtra("ListVersion", ListVersion);
                     intent.putExtra("sortVersion", sortVersion);
+                    intent.putExtra("jungOk", jungOk);
                     context.startActivity(intent);
                     break;
 

@@ -82,7 +82,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
         jungOk = true;
 
         jungOnoff = findViewById(R.id.checkbox_jungOk); //checkBox으로 변경
-        jungOnoff.setOnClickListener(new View.OnClickListener() {
+        jungOnoff.setOnClickListener(this);
+ /*       {
             @Override
             public void onClick(View view) {
                 if (((CheckBox) view).isChecked()) {
@@ -91,156 +92,12 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     jungOk = false;
                 }
             }
-        });
+        });*/
 
         sortVersion = 0;
         sortList = findViewById(R.id.button_sortList);
         sortList.setText("정렬기준 : 기본");
-        sortList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sortVersion += 1;
-                //일단 2개만 되게 하자
-                if (sortVersion >= 2)
-                    sortVersion = sortVersion % 2; //1기본, 2영단어, 3한글
-
-                if (sortVersion == 0) {
-                    sortList.setText("정렬기준 : 기본");
-                }
-                else if (sortVersion == 1) {
-                    sortList.setText("정렬기준 : 영단어순");
-                }
-
-                /*
-                else if (sortVersion == 2) {
-                    sortList.setText("정렬기준 : 한글순");
-                }*/
-
-                ////////ctrl c + v
-
-                adapter.sortVersion = sortVersion;
-
-                //오답노트
-                if (ListVersion == 4) {
-                    if (sortVersion == 0) {
-                        Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
-                        databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
-                            @Override
-                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                word = fetchedWordList;
-                                getData(); //데이터 IN
-                            }
-                        });
-                    }
-                    else {
-                        String check = "english";
-                        if (sortVersion == 1)
-                            check = "english";
-                        //                    else if(sortVersion == 2)
-                        //                        check = "korean";
-                        Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
-                        databaseControl.queryOrder("OdapVoca", check, jungOk)
-                                .update(new DatabaseControl.OnGetDataListener() {
-                                    @Override
-                                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                        word = fetchedWordList;
-                                        getData(); //데이터 IN
-                                    }
-                                });
-                    }
-                }
-                //단어장3
-                else if (ListVersion == 3) {
-                    if (sortVersion == 0) {
-                        Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
-                        databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
-                            @Override
-                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                word = fetchedWordList;
-                                getData(); //데이터 IN
-                            }
-                        });
-                    }
-                    else {
-                        String check = "english";
-                        if (sortVersion == 1)
-                            check = "english";
-                        //                    else if(sortVersion == 2)
-                        //                        check = "korean";
-                        Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
-                        databaseControl.queryOrder("EngVoca3", check, jungOk)
-                                .update(new DatabaseControl.OnGetDataListener() {
-                                    @Override
-                                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                        word = fetchedWordList;
-                                        getData(); //데이터 IN
-                                    }
-                                });
-                    }
-                }
-                //단어장2
-                else if (ListVersion == 2) {
-                    if (sortVersion == 0) {
-                        Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
-                        databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
-                            @Override
-                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                word = fetchedWordList;
-                                getData(); //데이터 IN
-                            }
-                        });
-                    }
-                    else {
-                        String check = "english";
-                        if (sortVersion == 1)
-                            check = "english";
-                        //                    else if(sortVersion == 2)
-                        //                        check = "korean";
-                        Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
-                        databaseControl.queryOrder("EngVoca2", check, jungOk)
-                                .update(new DatabaseControl.OnGetDataListener() {
-                                    @Override
-                                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                        word = fetchedWordList;
-                                        getData(); //데이터 IN
-                                    }
-                                });
-                    }
-                }
-                //단어장1
-                else {
-                    if (sortVersion == 0) {
-                        Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
-                        databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
-                            @Override
-                            public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                word = fetchedWordList;
-                                getData(); //데이터 IN
-                            }
-                        });
-                    }
-                    else {
-                        String check = "english";
-                        if (sortVersion == 1)
-                            check = "english";
-                        //                    else if(sortVersion == 2)
-                        //                        check = "korean";
-                        Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
-                        databaseControl.queryOrder("EngVoca", check, jungOk)
-                                .update(new DatabaseControl.OnGetDataListener() {
-                                    @Override
-                                    public void OnSuccess(ArrayList<Word> fetchedWordList) {
-                                        word = fetchedWordList;
-                                        getData(); //데이터 IN
-                                    }
-                                });
-                    }
-                }
-                ///////ctrl c + v
-
-            }
-        });
-
+        sortList.setOnClickListener(this);
 
 
         //일단 오답노트랑 그냥 단어장 구분
@@ -406,9 +263,158 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
-        gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(gomainIntent);
+        if (view == drawerOnoffButton) {
+            Intent gomainIntent = new Intent(getApplicationContext(), MainActivity.class);
+            gomainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(gomainIntent);
+        } else { //정렬 출력 처리
+            if (view == jungOnoff) {
+                if (((CheckBox) view).isChecked()) {
+                    jungOk = true;
+                } else {
+                    jungOk = false;
+                }
+            }
+
+            if (view == sortList) {
+                sortVersion += 1;
+            }
+
+            //일단 2개만 되게 하자
+            if (sortVersion >= 2)
+                sortVersion = sortVersion % 2; //1기본, 2영단어, 3한글
+
+            if (sortVersion == 0) {
+                sortList.setText("정렬기준 : 기본");
+            } else if (sortVersion == 1) {
+                sortList.setText("정렬기준 : 영단어순");
+            }
+
+                /*
+                else if (sortVersion == 2) {
+                    sortList.setText("정렬기준 : 한글순");
+                }*/
+
+            ////////ctrl c + v
+
+            adapter.sortVersion = sortVersion;
+            adapter.jungOk = jungOk;
+
+            //오답노트
+            if (ListVersion == 4) {
+                if (sortVersion == 0) {
+                    Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
+                    databaseControl.update("OdapVoca", new DatabaseControl.OnGetDataListener() {
+                        @Override
+                        public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                            word = fetchedWordList;
+                            getData(); //데이터 IN
+                        }
+                    });
+                } else {
+                    String check = "english";
+                    if (sortVersion == 1)
+                        check = "english";
+                    //                    else if(sortVersion == 2)
+                    //                        check = "korean";
+                    Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
+                    databaseControl.queryOrder("OdapVoca", check, jungOk)
+                            .update(new DatabaseControl.OnGetDataListener() {
+                                @Override
+                                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                    word = fetchedWordList;
+                                    getData(); //데이터 IN
+                                }
+                            });
+                }
+            }
+            //단어장3
+            else if (ListVersion == 3) {
+                if (sortVersion == 0) {
+                    Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
+                    databaseControl.update("EngVoca3", new DatabaseControl.OnGetDataListener() {
+                        @Override
+                        public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                            word = fetchedWordList;
+                            getData(); //데이터 IN
+                        }
+                    });
+                } else {
+                    String check = "english";
+                    if (sortVersion == 1)
+                        check = "english";
+                    //                    else if(sortVersion == 2)
+                    //                        check = "korean";
+                    Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
+                    databaseControl.queryOrder("EngVoca3", check, jungOk)
+                            .update(new DatabaseControl.OnGetDataListener() {
+                                @Override
+                                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                    word = fetchedWordList;
+                                    getData(); //데이터 IN
+                                }
+                            });
+                }
+            }
+            //단어장2
+            else if (ListVersion == 2) {
+                if (sortVersion == 0) {
+                    Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
+                    databaseControl.update("EngVoca2", new DatabaseControl.OnGetDataListener() {
+                        @Override
+                        public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                            word = fetchedWordList;
+                            getData(); //데이터 IN
+                        }
+                    });
+                } else {
+                    String check = "english";
+                    if (sortVersion == 1)
+                        check = "english";
+                    //                    else if(sortVersion == 2)
+                    //                        check = "korean";
+                    Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
+                    databaseControl.queryOrder("EngVoca2", check, jungOk)
+                            .update(new DatabaseControl.OnGetDataListener() {
+                                @Override
+                                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                    word = fetchedWordList;
+                                    getData(); //데이터 IN
+                                }
+                            });
+                }
+            }
+            //단어장1
+            else {
+                if (sortVersion == 0) {
+                    Toast.makeText(getApplicationContext(), "기본", Toast.LENGTH_SHORT).show();
+                    databaseControl.update("EngVoca", new DatabaseControl.OnGetDataListener() {
+                        @Override
+                        public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                            word = fetchedWordList;
+                            getData(); //데이터 IN
+                        }
+                    });
+                } else {
+                    String check = "english";
+                    if (sortVersion == 1)
+                        check = "english";
+                    //                    else if(sortVersion == 2)
+                    //                        check = "korean";
+                    Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
+                    databaseControl.queryOrder("EngVoca", check, jungOk)
+                            .update(new DatabaseControl.OnGetDataListener() {
+                                @Override
+                                public void OnSuccess(ArrayList<Word> fetchedWordList) {
+                                    word = fetchedWordList;
+                                    getData(); //데이터 IN
+                                }
+                            });
+                }
+            }
+            ///////ctrl c + v
+        }
 
     }
+
 }
