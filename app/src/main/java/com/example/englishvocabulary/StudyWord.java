@@ -84,6 +84,8 @@ public class StudyWord extends AppCompatActivity {
                 String check = "english";
                 if (sortVersion == 1)
                     check = "english";
+                else if(sortVersion == 2)
+                    check = "isMen";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
                 databaseControl.queryOrder("OdapVoca", check, jungOk)
@@ -112,6 +114,8 @@ public class StudyWord extends AppCompatActivity {
                 String check = "english";
                 if (sortVersion == 1)
                     check = "english";
+                else if(sortVersion == 2)
+                    check = "isMen";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
                 databaseControl.queryOrder("EngVoca3", check, jungOk)
@@ -140,6 +144,8 @@ public class StudyWord extends AppCompatActivity {
                 String check = "english";
                 if (sortVersion == 1)
                     check = "english";
+                else if(sortVersion == 2)
+                    check = "isMen";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
                 databaseControl.queryOrder("EngVOca2", check, jungOk)
@@ -168,6 +174,8 @@ public class StudyWord extends AppCompatActivity {
                 String check = "english";
                 if (sortVersion == 1)
                     check = "english";
+                else if(sortVersion == 2)
+                    check = "isMen";
                 //                    else if(sortVersion == 2)
                 //                        check = "korean";
                 databaseControl.queryOrder("EngVoca", check, jungOk)

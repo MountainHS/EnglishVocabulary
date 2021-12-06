@@ -280,20 +280,18 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 sortVersion += 1;
             }
 
-            //일단 2개만 되게 하자
-            if (sortVersion >= 2)
-                sortVersion = sortVersion % 2; //1기본, 2영단어, 3한글
+            //일단 3개만 되게 하자
+            if (sortVersion >= 3)
+                sortVersion = sortVersion % 3; //1기본, 2영단어, 3한글
 
             if (sortVersion == 0) {
                 sortList.setText("정렬기준 : 기본");
             } else if (sortVersion == 1) {
                 sortList.setText("정렬기준 : 영단어순");
             }
-
-                /*
-                else if (sortVersion == 2) {
-                    sortList.setText("정렬기준 : 한글순");
-                }*/
+            else if (sortVersion == 2) {
+                sortList.setText("정렬기준 : 암기/미암기");
+            }
 
             ////////ctrl c + v
 
@@ -315,8 +313,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     String check = "english";
                     if (sortVersion == 1)
                         check = "english";
-                    //                    else if(sortVersion == 2)
-                    //                        check = "korean";
+                    else if(sortVersion == 2)
+                        check = "isMen";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("OdapVoca", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -343,8 +341,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     String check = "english";
                     if (sortVersion == 1)
                         check = "english";
-                    //                    else if(sortVersion == 2)
-                    //                        check = "korean";
+                    else if(sortVersion == 2)
+                        check = "isMen";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca3", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -371,8 +369,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     String check = "english";
                     if (sortVersion == 1)
                         check = "english";
-                    //                    else if(sortVersion == 2)
-                    //                        check = "korean";
+                    else if(sortVersion == 2)
+                        check = "isMen";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca2", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -399,8 +397,8 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     String check = "english";
                     if (sortVersion == 1)
                         check = "english";
-                    //                    else if(sortVersion == 2)
-                    //                        check = "korean";
+                    else if(sortVersion == 2)
+                        check = "isMen";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
