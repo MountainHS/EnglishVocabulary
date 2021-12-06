@@ -72,6 +72,9 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
         private TextView kor1;
         private TextView kor2;
         private TextView kor3;
+        //!!! 미암기 여부 확인 체크박스 추가 시작
+        private CheckBox isMem;
+        //!!! 종료
         private Word data;
         private ArrayList<Word> sendData;
         private LinearLayout linearLayout;
@@ -85,6 +88,9 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
             kor2 = itemView.findViewById(R.id.textview_korean_word_list2);
             kor3 = itemView.findViewById(R.id.textview_korean_word_list3);
             linearLayout = itemView.findViewById(R.id.layout_word_list_linearlayout);
+            //!!! 미암기 여부 확인 체크박스 추가 시작
+            isMem = itemView.findViewById(R.id.checkbox_isMemListWord);
+            //!!! 종료
         }
 
         void onBind(Word data) {
@@ -95,14 +101,15 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.ItemVi
             kor1.setText(data.getKorean1());
             kor2.setText(data.getKorean2());
             kor3.setText(data.getKorean3());
+            //!!! 미암기 여부 확인 체크박스 추가 시작
+            isMem.setChecked(data.getisMem());
+            //!!! 종료
 
             eng.setOnClickListener(this);
             kor1.setOnClickListener(this);
             kor2.setOnClickListener(this);
             kor3.setOnClickListener(this);
             linearLayout.setOnClickListener(this);
-
-
         }
 
         @Override

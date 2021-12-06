@@ -69,7 +69,7 @@ public class Word implements Serializable {
         return isMem;
     }
 
-    public void setisMen(boolean isMem) {
+    public void setIsMem(boolean isMem) {
         this.isMem = isMem;
     }
 

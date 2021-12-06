@@ -202,15 +202,15 @@ public class DatabaseControl extends AppCompatActivity{
                     Word newWord = new Word();
                     newWord.setKorenAll(korean);
                     newWord.setEnglish(english);
-                    newWord.setisMen(true);
+                    newWord.setIsMem(true);
                     newWord.setisOdap(false);
 
                     addWord(collectionName, newWord);
                 }
+
                 catch(ArrayIndexOutOfBoundsException e){
                     Log.d("!!!!!", row.toString());
                 }
-
             }
         } catch(FileNotFoundException e){
             Log.d(TAG, "파일을 열 수 없음");
