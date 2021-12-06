@@ -14,38 +14,49 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishVocabulary">
         <activity
+            android:screenOrientation="portrait"
             android:name=".TestResult"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".TestWrong"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Test"
             android:exported="true"
             android:noHistory="true"/>
         <activity
+            android:screenOrientation="portrait"
             android:name=".TestSetting"
             android:exported="true"
             android:noHistory="true"/>
         <activity
+            android:screenOrientation="portrait"
             android:name=".StudyWord_show"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".StudyWord"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".AddWord"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ListWord_show"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ListWord"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Drawer"
             android:exported="true" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
