@@ -314,7 +314,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     if (sortVersion == 1)
                         check = "english";
                     else if(sortVersion == 2)
-                        check = "isMen";
+                        check = "isMem";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("OdapVoca", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -342,7 +342,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     if (sortVersion == 1)
                         check = "english";
                     else if(sortVersion == 2)
-                        check = "isMen";
+                        check = "isMem";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca3", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -370,7 +370,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     if (sortVersion == 1)
                         check = "english";
                     else if(sortVersion == 2)
-                        check = "isMen";
+                        check = "isMem";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca2", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
@@ -398,7 +398,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                     if (sortVersion == 1)
                         check = "english";
                     else if(sortVersion == 2)
-                        check = "isMen";
+                        check = "isMem";
                     Toast.makeText(getApplicationContext(), check, Toast.LENGTH_SHORT).show();
                     databaseControl.queryOrder("EngVoca", check, jungOk)
                             .update(new DatabaseControl.OnGetDataListener() {
