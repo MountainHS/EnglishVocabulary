@@ -32,6 +32,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
     ArrayList<String> kor1;
     ArrayList<String> kor2;
     ArrayList<String> kor3;
+    ArrayList<Boolean> isMem;
 
     ImageButton drawerOnoffButton;
     private RecyclerAdaptor adapter;
@@ -322,7 +323,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
                 data.setKorean2(ko2);
                 data.setKorean3(ko3);
                 data.setWhen(eng.size());
-                data.setisMen(true);
+                data.setIsMem(true);
                 data.setisOdap(false);
 
                 //파이어베이스에 단어 추가
@@ -376,6 +377,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
         kor1 = new ArrayList<>();
         kor2 = new ArrayList<>();
         kor3 = new ArrayList<>();
+        isMem = new ArrayList<>();
         adapter.init_Item();
 
         for (Word w : word) {
@@ -383,6 +385,7 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
             kor1.add(w.getKorean1());
             kor2.add(w.getKorean2());
             kor3.add(w.getKorean3());
+            isMem.add(w.getisMem());
         }
 
         for (int i = 0; i < eng.size(); i++) { //이 구문 때문에, kor, eng다 크기 맞추기
@@ -391,15 +394,14 @@ public class ListWord extends AppCompatActivity implements View.OnClickListener 
             data.setKorean1(kor1.get(i));
             data.setKorean2(kor2.get(i));
             data.setKorean3(kor3.get(i));
+            data.setIsMem(isMem.get(i));
             data.setWhen(i);
 
 
             adapter.addItem(data); //adapter에 word_data(영+한)을 추가
             adapter.notifyDataSetChanged();
         }
-
         adapter.notifyDataSetChanged();
-
     }
 
     @Override

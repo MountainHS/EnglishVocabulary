@@ -1,5 +1,6 @@
 package com.example.englishvocabulary;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static com.example.englishvocabulary.firestore.DatabaseControl.*;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    Button myword;
 //    Button amgi;
 //    Button miamgi;
+    // databaseControl test start
+    DatabaseControl dbC;
+    // end
     LinearLayout myword;
     LinearLayout myword2;
     LinearLayout myword3;
@@ -62,8 +66,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         databaseControl = new DatabaseControl();
 //        // databaseControl test start
-//        dbC = new DatabaseControl();
-//        dbC.storagePermissionCheck(this);
+//        File testFile = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+//        Log.d("!!!!!",testFile.getAbsolutePath());
+//        for (String s:testFile.list()){
+//            Log.d("!!!!!", s);
+//        }
+//
+//        try {
+//            testFile = new File(testFile.getAbsolutePath() + "/test.txt");
+//            Log.d("!!!!!",testFile.getAbsolutePath());
+//            FileWriter testWriteFile = new FileWriter(testFile);
+//            testWriteFile.write("1. culture \t문화, 교양\n" +
+//                    "2. experience \t경험, 경험하다\n" +
+//                    "3. education \t교육\n" +
+//                    "4. symbol \t상징\n" +
+//                    "5. effect \t결과, 영향, 효과\n" +
+//                    "6. liberty \t자유\n" +
+//                    "7. affair \t사건, 일\n" +
+//                    "8. comfort \t안락, 위안\n" +
+//                    "9. tradition \t전통\n" +
+//                    "10. subject \t학과, 주제, 주어\n" +
+//                    "11. object \t물건, 목적, 반대하다\n" +
+//                    "12. source \t출처, 근원\n" +
+//                    "13. revolution \t혁명\n" +
+//                    "14. pollution \t오염\n" +
+//                    "15. system \t체계, 조직, 제도\n" +
+//                    "16. triumph \t승리\n" +
+//                    "17. respect \t존경, 존경하다\n" +
+//                    "18. communication \t의사소통, 전달\n" +
+//                    "19. foundation \t기초, 근거, 설립\n" +
+//                    "20. glory \t영광");
+//            testWriteFile.close();
+//        }
+//        catch (IOException e){
+//            Log.d("!!!!!","test.txt IOE");
+//        }
+//        dbC.uploadVocabularyDataSet("testVoca", testFile.getAbsolutePath());
 //        // end
 
 //        myword = (Button) findViewById(R.id.button_myword);
