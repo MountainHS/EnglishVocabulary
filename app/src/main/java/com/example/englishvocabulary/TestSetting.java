@@ -97,7 +97,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
             inputManyWord.setText(word.size() + "");
         }
         else if(view == startTest){
-            Log.v("test","startTest 클릭");
+            Log.v("testing","startTest 클릭");
 
             many = inputManyWord.getText().toString();
             if(many.equals("") || many.equals(" ")){
@@ -111,6 +111,7 @@ public class TestSetting extends AppCompatActivity implements View.OnClickListen
                     Intent intent = new Intent(getApplicationContext(), Test.class);
                     intent.putExtra("TestArray", word);
                     intent.putExtra("ManyTestWord", manyTestWord);
+                    Log.v("testing","시험 문제 수  " + manyTestWord +"개로 시험 시작...");
                     startActivity(intent);
                 }
                 else{

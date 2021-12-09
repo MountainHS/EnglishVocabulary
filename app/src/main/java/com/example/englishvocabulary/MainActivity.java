@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         databaseControl = new DatabaseControl();
+        Log.v("testing", "앱 실행");
 //        // databaseControl test start
 //        File testFile = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
 //        Log.d("!!!!!",testFile.getAbsolutePath());
@@ -200,32 +201,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(view==myword){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 1);
+            Log.v("testing", "내 단어장 이동");
             startActivity(intent);
         }
 
         else if(view==myword2){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 2);
+            Log.v("testing", "TOIEC 모음 이동");
             startActivity(intent);
         }
         else if(view==myword3){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 3);
+            Log.v("testing", "기초 단어 이동");
             startActivity(intent);
         }
         else if(view==odab){
             intent = new Intent(getApplicationContext(), ListWord.class);
             intent.putExtra("ListVersion", 4);
+            Log.v("testing", "오답노트 이동");
             startActivity(intent);
         }
         else if(view==goNaver){
             intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://endic.naver.com/"));
+            Log.v("testing", "외부 영단어 사이트 이동");
             startActivity(intent);
         }
         else if(view==test){
             intent = new Intent(getApplicationContext(), TestSetting.class);
+            Log.v("testing", "테스트 기능 이동");
             startActivity(intent);
         }
 

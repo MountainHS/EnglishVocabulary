@@ -4,6 +4,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +103,7 @@ public class MyAdaptor extends PagerAdapter {
             public void onClick(View view) {
                 english_word.setTextColor(Color.parseColor(engdColor()));
                 TextStatus.engStatus = !TextStatus.engStatus;
+                Log.v("testing","영어 가림 = " + TextStatus.engStatus);
             }
         });
 
@@ -113,6 +115,7 @@ public class MyAdaptor extends PagerAdapter {
                 korean_word2.setTextColor(Color.parseColor(korColor()));
                 korean_word3.setTextColor(Color.parseColor(korColor()));
                 TextStatus.korStatus = !TextStatus.korStatus;
+                Log.v("testing","한글 가림 = " + TextStatus.korStatus);
             }
         });
 

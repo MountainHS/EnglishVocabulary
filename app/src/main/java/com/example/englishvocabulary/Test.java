@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -108,20 +109,24 @@ public class Test extends AppCompatActivity implements View.OnClickListener {
         if(view == checkAnswer){ //답 비교
             String check = inputTestAnswer.getText().toString();
             if(check.equals(testWord.get(i-1).getEnglish())){
+                Log.v("testing",i+"번문제 : 정답");
                 correct++;
             }
             else{
+                Log.v("testing",i+"번문제 : 오답");
                 makeDialog(); //wrong++를 여기서 하면 마지막 문제 틀렸을 때 바로 넘김
                 wrong++;
             }
         }
 
         else if(view == jumpAnswer) { //답 건너뛰기
+            Log.v("testing",i+"번문제 : 패스");
             makeDialog();
             wrong++;
         }
 
         else if(view == endTest){ //끝내기
+            Log.v("testing","시험 끝");
             buttonEnd = true;
             i-=1; //이미 올라간 문제X
         }

@@ -46,6 +46,8 @@ public class StudyWord extends AppCompatActivity {
         setContentView(R.layout.activity_study_word);
         databaseControl = new DatabaseControl();
 
+        Log.v("testing","단어 공부 페이지");
+
         pager = findViewById(R.id.viewpager);
         eng = new ArrayList<>();
         kor1 = new ArrayList<>();
@@ -67,7 +69,7 @@ public class StudyWord extends AppCompatActivity {
         int ListVersion = intent.getIntExtra("ListVersion", 1);
         int sortVersion = intent.getIntExtra("sortVersion", 1);
         boolean jungOk = intent.getBooleanExtra("jungOk", true);
-        Log.v("test", "ListVersion : " + ListVersion);
+        //Log.v("test", "ListVersion : " + ListVersion);
 
         if(ListVersion == 4) {
             if(sortVersion == 0) {

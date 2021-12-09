@@ -13,5 +13,3 @@ public class TestWrong extends AppCompatActivity {
     }
 }
 
-// 커스텀 다이얼로그 만들기
-// https://jhshjs.tistory.com/59
